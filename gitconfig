@@ -1,0 +1,25 @@
+[user]
+    name = Seamile
+    email = lanhuermao@gmail.com
+[alias]
+    ci = commit
+    co = checkout
+    df = difftool
+    lg = log --stat --graph
+    mg = merge --no-commit --squash
+    st = status
+    sl = stash list
+    sv = stash save
+    sp = stash pop
+    up = pull
+    cls = remote prune origin
+[color]
+    ui = true
+[diff]
+    tool = vimdiff
+[difftool]
+    prompt = false
+[core]
+	editor = vim
+[push]
+	default = simple

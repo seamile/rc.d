@@ -1,0 +1,5 @@
+[
+    { "keys": ["super+r"], "command": "goto_symbol_in_project" },
+    { "keys": ["super+shift+r"], "command": "show_overlay", "args": {"overlay": "goto", "text": "@"} },
+
+]

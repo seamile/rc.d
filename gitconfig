@@ -20,6 +20,4 @@
 [difftool]
     prompt = false
 [core]
-	editor = vim
-[push]
-	default = simple
+    editor = vim

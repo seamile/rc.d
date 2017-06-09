@@ -48,7 +48,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git osx autojump golang python docker)
+plugins=(golang python docker)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -58,12 +58,13 @@ DEFAULT_USER=Seamile
 alias grep='grep --color=auto --exclude-dir={.git,.hg,.svn}'
 export GREP_COLOR='1;31'
 if [ -d $HOME/.bin ]; then
-    export PATH=$PATH:$HOME/.bin
+    export PATH=$HOME/.bin:$PATH
 fi
 
 # brew
 if which brew > /dev/null; then
-    BREWHOME=`brew --prefix`
+    # BREWHOME=`brew --prefix`
+    BREWHOME="/usr/local"
     export LDFLAGS="-L$BREWHOME/lib"
     export CPPFLAGS="-I$BREWHOME/include"
     export PKG_CONFIG_PATH="$BREWHOME/lib/pkgconfig"
@@ -114,10 +115,12 @@ alias tree='tree -C --dirsfirst'
 alias less='less -N'
 alias tkill='tmux kill-session -t'
 alias aria='aria2c -c -x 16'
-alias myip='echo $(curl -s https://icanhazip.com)'
+alias myip='echo $(curl -s https://api.ipify.org)'
 if [ `uname` = "Darwin" ];then
     alias tailf='tail -F'
     alias rmds='find ./ | grep ".DS_Store" | xargs rm -fv'
+    alias showfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+    alias hidefiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
 fi
 
 # Python alias
@@ -140,14 +143,14 @@ alias gmg='git merge --no-commit --squash'
 # pgrep && top
 topgrep() {
     if [ `uname` = "Darwin" ];then
-        CMD="top"
+        local CMD="top"
         for P in $(pgrep $1);
         do
             CMD+=" -pid $P"
         done
         eval $CMD
     else
-        CMD="top -p "
+        local CMD="top -p "
         for P in $(pgrep $1);
         do
             CMD+="$P,"
@@ -169,7 +172,7 @@ proxy() {
 
 # ssh gate
 gfw() {
-    GFW_PID=`ps ax|grep -v grep|grep 'ssh -qTfnN -D 7070 root@box'|awk '{print $1}'`
+    local GFW_PID=`ps ax|grep -v grep|grep 'ssh -qTfnN -D 7070 root@box'|awk '{print $1}'`
     if [ ! -e $GFW_PID ];then
         kill -9 $GFW_PID
     fi
@@ -179,9 +182,9 @@ gfw() {
 # check ip
 chkip() {
     if [ -z $1 ]; then
-        curl -s http://www.ip.cn
+        curl -s "http://ip.cn/"
     else
-        curl -s http://www.ip.cn/\?ip\=$1
+        curl -s "http://ip.cn/index.php?ip=$1"
     fi
 }
 

@@ -116,7 +116,7 @@ alias less='less -N'
 alias tkill='tmux kill-session -t'
 alias aria='aria2c -c -x 16'
 alias myip='echo $(curl -s https://api.ipify.org)'
-if [ `uname` = "Darwin" ];then
+if [ `uname` = "Darwin" ]; then
     alias tailf='tail -F'
     alias rmds='find ./ | grep ".DS_Store" | xargs rm -fv'
     alias showfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
@@ -142,17 +142,15 @@ alias gmg='git merge --no-commit --squash'
 
 # pgrep && top
 topgrep() {
-    if [ `uname` = "Darwin" ];then
+    if [ `uname` = "Darwin" ]; then
         local CMD="top"
-        for P in $(pgrep $1);
-        do
+        for P in $(pgrep $1); do
             CMD+=" -pid $P"
         done
         eval $CMD
     else
         local CMD="top -p "
-        for P in $(pgrep $1);
-        do
+        for P in $(pgrep $1); do
             CMD+="$P,"
         done
         eval ${CMD%%,}
@@ -173,7 +171,7 @@ proxy() {
 # ssh gate
 gfw() {
     local GFW_PID=`ps ax|grep -v grep|grep 'ssh -qTfnN -D 7070 root@box'|awk '{print $1}'`
-    if [ ! -e $GFW_PID ];then
+    if [ ! -e $GFW_PID ]; then
         kill -9 $GFW_PID
     fi
     ssh -qTfnN -D 7070 root@box
@@ -184,7 +182,10 @@ chkip() {
     if [ -z $1 ]; then
         curl -s "http://ip.cn/"
     else
-        curl -s "http://ip.cn/index.php?ip=$1"
+        local IP
+        for IP in $@; do
+            curl -s "http://ip.cn/index.php?ip=$IP"
+        done
     fi
 }
 

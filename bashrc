@@ -145,10 +145,13 @@ gfw() {
 
 # check ip
 chkip() {
-    if [ -z $1 ]; then
-        curl -s http://www.ip.cn
+    if [[ $# == 0 ]]; then
+        curl -s "http://ip.cn/"
     else
-        curl -s http://www.ip.cn/\?ip\=$1
+        local IP
+        for IP in $@; do
+            curl -s "http://ip.cn/index.php?ip=$IP"
+        done
     fi
 }
 

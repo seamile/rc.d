@@ -1,0 +1,23 @@
+ipython
+
+# WebFramework
+# web.py
+django
+flask
+gunicorn
+sanic
+tornado
+
+# aio-tools
+aiohttp
+asyncpg
+uvloop
+
+# Crawl
+pyquery
+pysocks
+requests
+
+# other
+mistune
+ujson

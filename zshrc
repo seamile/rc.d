@@ -179,7 +179,7 @@ gfw() {
 
 # check ip
 chkip() {
-    if [ -z $1 ]; then
+    if [[ $# == 0 ]]; then
         curl -s "http://ip.cn/"
     else
         local IP

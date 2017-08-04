@@ -1,0 +1,43 @@
+{
+	"always_show_minimap_viewport": true,
+	"bold_folder_labels": true,
+	"caret_style": "phase",
+	"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+	"draw_white_space": "all",
+	"ensure_newline_at_eof_on_save": true,
+	"fade_fold_buttons": false,
+	"font_face": "Monaco",
+	"font_size": 13,
+	"highlight_line": true,
+	"ignore_vcs_packages": true,
+	"ignored_packages":
+	[
+		"Go",
+		"vcs",
+		"Vintage"
+	],
+	"indent_subsequent_lines": true,
+	"indent_to_bracket": true,
+	"rulers":
+	[
+		80
+	],
+	"scroll_past_end": true,
+	"shift_tab_unindent": true,
+	"show_encoding": true,
+	"show_full_path": true,
+	"show_line_endings": true,
+	"theme": "Boxy Monokai.sublime-theme",
+	"theme_find_panel_atomized": true,
+	"theme_sidebar_disclosure": true,
+	"theme_sidebar_folder_materialized": true,
+	"theme_sidebar_icon_saturation_lw": true,
+	"theme_sidebar_indent_top_level_disabled": true,
+	"theme_sidebar_indent_xl": true,
+	"theme_sidebar_size_xxs": true,
+	"theme_tab_selected_underlined": true,
+	"translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": true,
+	"word_wrap": "true",
+	"wrap_width": 0
+}

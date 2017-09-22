@@ -26,25 +26,21 @@ export HISTTIMEFORMAT="[%y-%m-%d_%T]  "
 alias grep='grep --color=auto --exclude-dir={.git,.hg,.svn}'
 export GREP_COLOR='1;31'
 if [ -d $HOME/.bin ]; then
-    export PATH=$PATH:$HOME/.bin
+    export PATH=$HOME/.bin:$PATH
 fi
 
 # brew
 if which brew > /dev/null; then
-    BREWHOME=`brew --prefix`
+    # BREWHOME=`brew --prefix`
+    BREWHOME="/usr/local"
     export LDFLAGS="-L$BREWHOME/lib"
     export CPPFLAGS="-I$BREWHOME/include"
     export PKG_CONFIG_PATH="$BREWHOME/lib/pkgconfig"
 fi
 
 # Golang env
-export GOROOT="/usr/local/opt/go/libexec"
 export GOPATH="$HOME/Golang"
-export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
-if which go > /dev/null; then
-    alias gd='go doc'
-    alias gdr='echo -e "Listen 0.0.0.0:9090";godoc -http 0.0.0.0:9090'
-fi
+export PATH="$GOPATH/bin:$PATH"
 
 # Pyenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -82,9 +78,11 @@ alias less='less -N'
 alias tkill='tmux kill-session -t'
 alias aria='aria2c -c -x 16'
 alias myip='echo $(curl -s https://api.ipify.org)'
-if [ `uname` = "Darwin" ];then
+if [ `uname` = "Darwin" ]; then
     alias tailf='tail -F'
     alias rmds='find ./ | grep ".DS_Store" | xargs rm -fv'
+    alias showfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+    alias hidefiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
 fi
 
 # Python alias
@@ -106,17 +104,15 @@ alias gmg='git merge --no-commit --squash'
 
 # pgrep && top
 topgrep() {
-    if [ `uname` = "Darwin" ];then
-        CMD="top"
-        for P in $(pgrep $1);
-        do
+    if [ `uname` = "Darwin" ]; then
+        local CMD="top"
+        for P in $(pgrep $1); do
             CMD+=" -pid $P"
         done
         eval $CMD
     else
-        CMD="top -p "
-        for P in $(pgrep $1);
-        do
+        local CMD="top -p "
+        for P in $(pgrep $1); do
             CMD+="$P,"
         done
         eval ${CMD%%,}
@@ -136,8 +132,8 @@ proxy() {
 
 # ssh gate
 gfw() {
-    GFW_PID=`ps ax|grep -v grep|grep 'ssh -qTfnN -D 7070 root@box'|awk '{print $1}'`
-    if [ ! -e $GFW_PID ];then
+    local GFW_PID=`ps ax|grep -v grep|grep 'ssh -qTfnN -D 7070 root@box'|awk '{print $1}'`
+    if [ ! -e $GFW_PID ]; then
         kill -9 $GFW_PID
     fi
     ssh -qTfnN -D 7070 root@box

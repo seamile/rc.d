@@ -1,0 +1,5 @@
+{
+    "env": { "GOPATH": "$HOME/Golang" },
+    "selector": "source.go",
+    "cmd": ["go", "run", "$file"]
+}

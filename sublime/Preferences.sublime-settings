@@ -27,7 +27,7 @@
 	"show_encoding": true,
 	"show_full_path": true,
 	"show_line_endings": true,
-	"theme": "Boxy Monokai.sublime-theme",
+	"theme": "Adaptive.sublime-theme",
 	"theme_find_panel_atomized": true,
 	"theme_sidebar_disclosure": true,
 	"theme_sidebar_folder_materialized": true,

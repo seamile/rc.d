@@ -190,6 +190,23 @@ ent() {
     docker exec -it $1 /bin/bash
 }
 
+# fix brew include files
+fixBrewInclude() {
+    cd $BREWHOME/include
+    for dir in `find -L ../opt -name include`
+    do
+        for include in `ls $dir`
+        do
+            local SRC="$dir/$include"
+            if [ -d $SRC ] || [[ ${SRC##*.} == "h" ]]; then
+                local DST="./$include"
+                [[ -e $DST ]] || echo "ln -s $SRC $DST"
+            fi
+        done
+    done
+    cd -
+}
+
 # source zshrc.local
 if [[ -r "$HOME/.zshrc.local" && -r "$HOME/.zshrc.local" ]]; then
     source $HOME/.zshrc.local

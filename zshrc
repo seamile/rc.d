@@ -54,7 +54,7 @@ plugins=(golang python docker)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-DEFAULT_USER=Seamile
+DEFAULT_USER=`whoami`
 
 alias grep='grep --color=auto --exclude-dir={.git,.hg,.svn}'
 export GREP_COLOR='1;31'
@@ -188,6 +188,23 @@ chkip() {
 # enter docker container
 ent() {
     docker exec -it $1 /bin/bash
+}
+
+# fix brew include files
+fixBrewInclude() {
+    cd $BREWHOME/include
+    for dir in `find -L ../opt -name include`
+    do
+        for include in `ls $dir`
+        do
+            local SRC="$dir/$include"
+            if [ -d $SRC ] || [[ ${SRC##*.} == "h" ]]; then
+                local DST="./$include"
+                [[ -e $DST ]] || echo "ln -s $SRC $DST"
+            fi
+        done
+    done
+    cd -
 }
 
 # source zshrc.local

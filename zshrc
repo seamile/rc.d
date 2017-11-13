@@ -175,12 +175,13 @@ gfw() {
 
 # check ip
 chkip() {
+    local PYCODE="import sys,json;o=json.load(sys.stdin);s1='IP : %(query)s\nLoc: %(city)s / %(regionName)s / %(country)s\nPos: %(lat)s / %(lon)s\n';s2='IP : %(query)s\nInf: %(message)s\n';s=s2 if 'message' in o else s1;print(s % o);"
     if [[ $# == 0 ]]; then
-        curl -s "http://ip.cn/"
+        curl -s "http://ip-api.com/json/" | python -c $PYCODE
     else
         local IP
         for IP in $@; do
-            curl -s "http://ip.cn/index.php?ip=$IP"
+            curl -s "http://ip-api.com/json/$IP" | python -c $PYCODE
         done
     fi
 }

@@ -54,7 +54,7 @@ plugins=(golang python docker)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-DEFAULT_USER=Seamile
+DEFAULT_USER=`whoami`
 
 alias grep='grep --color=auto --exclude-dir={.git,.hg,.svn}'
 export GREP_COLOR='1;31'

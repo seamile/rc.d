@@ -192,6 +192,7 @@ chkip() {
 
 # enter docker container
 ent() {
+    docker container start $1
     docker exec -it $1 /bin/bash
 }
 

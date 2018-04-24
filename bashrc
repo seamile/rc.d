@@ -23,7 +23,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 export HISTTIMEFORMAT="[%y-%m-%d_%T]  "
-alias grep='grep --color=auto --exclude-dir={.git,.hg,.svn}'
+alias grep='grep --color=auto --exclude-dir={.git,.hg,.svn,.venv}'
 export GREP_COLOR='1;31'
 if [ -d $HOME/.bin ]; then
     export PATH=$HOME/.bin:$PATH
@@ -70,7 +70,7 @@ alias l='ls -Clho'
 alias ll='ls -ClhF'
 alias la='ls -A'
 
-alias rs='rsync -cvrP --exclude={.git,.hg,.svn}'
+alias rs='rsync -cvrP --exclude={.git,.hg,.svn,.venv}'
 alias pweb='python -m SimpleHTTPServer'
 alias psgrep='ps ax|grep -v grep|grep'
 alias tree='tree -C --dirsfirst'

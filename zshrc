@@ -6,6 +6,12 @@ export ZSH=$HOME/.oh-my-zsh
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="agnoster"
 
+# Set list of themes to load
+# Setting this variable when ZSH_THEME=random
+# cause zsh load theme from this variable instead of
+# looking in ~/.oh-my-zsh/themes/
+# An empty array have no effect
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -49,14 +55,18 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(golang python docker)
+plugins=(
+  golang
+  python
+  docker
+)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 DEFAULT_USER=`whoami`
 
-alias grep='grep --color=auto --exclude-dir={.git,.hg,.svn}'
+alias grep='grep --color=auto --exclude-dir={.git,.hg,.svn,.venv}'
 export GREP_COLOR='1;31'
 if [ -d $HOME/.bin ]; then
     export PATH=$HOME/.bin:$PATH
@@ -104,7 +114,7 @@ alias l='ls -Clho'
 alias ll='ls -ClhF'
 alias la='ls -A'
 
-alias rs='rsync -cvrP --exclude={.git,.hg,.svn}'
+alias rs='rsync -cvrP --exclude={.git,.hg,.svn,.venv}'
 alias pweb='python -m SimpleHTTPServer'
 alias psgrep='ps ax|grep -v grep|grep'
 alias tree='tree -C --dirsfirst'

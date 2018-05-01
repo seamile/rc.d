@@ -1,24 +1,44 @@
+# Shell
 ipython
+jupyter
 
-# WebFramework
-# web.py
+# Web
+bottle
 django
 flask
-gunicorn
 sanic
 tornado
+gunicorn
+celery
 
-# aio-tools
+# Async
 aiohttp
-asyncpg
+gevent
+pulsar
+twisted
 uvloop
 
-# Crawl
+# Spider
 lxml
 pyquery
-pysocks
+beautifulsoup4
 requests
+selenium
+scrapy
 
-# other
+# Style
+pep8
+flake8
+pylint
+
+# Data
+pymysql
+redis
+numpy
+
+# Utility
 mistune
-ujson
+paramiko
+pexpect
+pillow
+pysocks

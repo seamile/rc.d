@@ -98,12 +98,16 @@ if which pyenv > /dev/null; then
     alias chgpy='pyenv global'
     # func
     wk () {
-        if [[ -d "$1" ]]; then
+        if [[ -f "$1/bin/activate" ]]; then
             source $1/bin/activate
+        elif [[ -f "$1/activate" ]]; then
+            source $1/activate
         elif [[ -f "$1" ]]; then
             source $1
+        elif [[ -f ".venv/bin/activate" ]]; then
+            source .venv/bin/activate
         else
-            echo 'Venv: No such file or directory:' $1
+            echo 'Venv: Cannot find the activate file.'
         fi
     }
 fi

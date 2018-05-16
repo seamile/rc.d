@@ -21,3 +21,4 @@
     prompt = false
 [core]
     editor = vim
+	quotepath = false

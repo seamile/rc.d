@@ -82,7 +82,7 @@ if which brew > /dev/null; then
 fi
 
 # Golang env
-export GOPATH="$HOME/Golang"
+export GOPATH="$HOME/src/Golang"
 export PATH="$GOPATH/bin:$PATH"
 
 # Pyenv
@@ -124,13 +124,14 @@ alias psgrep='ps ax|grep -v grep|grep'
 alias tree='tree -C --dirsfirst'
 alias less='less -N'
 alias tkill='tmux kill-session -t'
-alias aria='aria2c -c -x 16'
+alias aria='aria2c -c -x 16 --file-allocation=none'
 alias myip='echo $(curl -s https://api.ipify.org)'
 if [ `uname` = "Darwin" ]; then
     alias tailf='tail -F'
     alias rmds='find ./ | grep ".DS_Store" | xargs rm -fv'
     alias showfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
     alias hidefiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+    alias power="echo Power: ${$(pmset -g batt|awk 'NR == 2 {print $3}')%%;}"
 fi
 
 # Python alias
@@ -141,12 +142,12 @@ alias ipy='ipython'
 alias ipy2='ipython2'
 alias ipy3='ipython3'
 alias pep='pep8 --ignore=E501'
-alias rmpyc='find ./ | grep "py[co]$" | xargs rm -fv'
+alias rmpyc='find . | grep -E "py[co]|__pycache__" | xargs rm -rvf'
 
 # Git alias
 alias gst='git status -sb'
 alias gdf='git difftool'
-alias glg='git log --graph --max-count=10'
+alias glg='git log --stat --graph --max-count=10'
 alias gco='git checkout'
 alias gmg='git merge --no-commit --squash'
 

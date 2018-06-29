@@ -12,9 +12,11 @@
 	"ignore_vcs_packages": true,
 	"ignored_packages":
 	[
+		"Anaconda",
 		"GoSublime",
 		"vcs",
-		"Vintage"
+		"Vintage",
+		"Virtualenv"
 	],
 	"indent_subsequent_lines": true,
 	"indent_to_bracket": true,

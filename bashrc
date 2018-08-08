@@ -48,25 +48,15 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 if which pyenv > /dev/null; then
     eval "$(pyenv init -)";
     eval "$(pyenv virtualenv-init -)"
-    # alias
-    alias pyv='python --version;pyenv version'
+    # pyenv alias
+    alias pyv='pyenv versions'
     alias chpy='pyenv global'
     alias chlpy='pyenv local'
     alias chgpy='pyenv global'
-    # func
-    wk () {
-        if [[ -f "$1/bin/activate" ]]; then
-            source $1/bin/activate
-        elif [[ -f "$1/activate" ]]; then
-            source $1/activate
-        elif [[ -f "$1" ]]; then
-            source $1
-        elif [[ -f ".venv/bin/activate" ]]; then
-            source .venv/bin/activate
-        else
-            echo 'Venv: Cannot find the activate file.'
-        fi
-    }
+fi
+# pip
+if which pip > /dev/null; then
+    eval "$(pip completion --bash)"
 fi
 
 # Custom alias
@@ -87,7 +77,7 @@ if [ `uname` = "Darwin" ]; then
     alias rmds='find ./ | grep ".DS_Store" | xargs rm -fv'
     alias showfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
     alias hidefiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
-    alias power="echo Power: ${$(pmset -g batt|awk 'NR == 2 {print $3}')%%;}"
+    alias power="echo Power: $(pmset -g batt|awk 'NR==2{print $3}'|sed 's/;//g')"
 fi
 
 # Python alias
@@ -106,6 +96,21 @@ alias gdf='git difftool'
 alias glg='git log --stat --graph --max-count=10'
 alias gco='git checkout'
 alias gmg='git merge --no-commit --squash'
+
+# virtual activate
+wk () {
+    if [[ -f "$1/bin/activate" ]]; then
+        source $1/bin/activate
+    elif [[ -f "$1/activate" ]]; then
+        source $1/activate
+    elif [[ -f "$1" ]]; then
+        source $1
+    elif [[ -f ".venv/bin/activate" ]]; then
+        source .venv/bin/activate
+    else
+        echo 'Venv: Cannot find the activate file.'
+    fi
+}
 
 # pgrep && top
 topgrep() {

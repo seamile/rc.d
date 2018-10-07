@@ -117,7 +117,7 @@
 	<data>
 	YnBsaXN0MDDUAQIDBAUGGBlYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
 	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QVk5TU2l6ZVhOU2ZGbGFnc1ZOU05hbWVWJGNs
-	YXNzI0AsAAAAAAAAEBCAAoADXxAcTWVzbG9MR00tUmVndWxhckZvclBvd2VybGluZdIT
+	YXNzI0AuAAAAAAAAEBCAAoADXxAcTWVzbG9MR01Gb3JQb3dlcmxpbmUtUmVndWxhctIT
 	FBUWWiRjbGFzc25hbWVYJGNsYXNzZXNWTlNGb250ohUXWE5TT2JqZWN0XxAPTlNLZXll
 	ZEFyY2hpdmVy0RobVHJvb3SAAQgRGiMtMjc8QktSW2JpcnR2eJecp7C3usPV2N0AAAAA
 	AAABAQAAAAAAAAAcAAAAAAAAAAAAAAAAAAAA3w==
@@ -129,7 +129,7 @@
 	<key>FontWidthSpacing</key>
 	<integer>1</integer>
 	<key>ProfileCurrentVersion</key>
-	<real>2.0499999999999998</real>
+	<real>2.0600000000000001</real>
 	<key>RunCommandAsShell</key>
 	<true/>
 	<key>SelectionColor</key>
@@ -194,6 +194,8 @@
 	<true/>
 	<key>columnCount</key>
 	<integer>256</integer>
+	<key>fontAllowsDisableAntialias</key>
+	<integer>1</integer>
 	<key>name</key>
 	<string>Seamile</string>
 	<key>rowCount</key>

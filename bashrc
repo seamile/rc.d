@@ -23,7 +23,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 export HISTTIMEFORMAT="[%y-%m-%d_%T]  "
-alias grep='grep --color=auto --exclude-dir={.git,.hg,.svn,.venv}'
+alias grep='grep -I --color=auto --exclude-dir={.git,.hg,.svn,.venv}'
 export GREP_COLOR='1;31'
 if [ -d $HOME/.bin ]; then
     export PATH=$HOME/.bin:$PATH
@@ -63,6 +63,7 @@ fi
 alias l='ls -Clho'
 alias ll='ls -ClhF'
 alias la='ls -A'
+alias lla='ls -ClhFA'
 
 alias rs='rsync -cvrP --exclude={.git,.hg,.svn,.venv}'
 alias pweb='python -m SimpleHTTPServer'
@@ -72,12 +73,15 @@ alias less='less -N'
 alias tkill='tmux kill-session -t'
 alias aria='aria2c -c -x 16 --file-allocation=none'
 alias myip='echo $(curl -s https://api.ipify.org)'
+
+# macOS alias
 if [ `uname` = "Darwin" ]; then
     alias tailf='tail -F'
     alias rmds='find ./ | grep ".DS_Store" | xargs rm -fv'
     alias showfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
     alias hidefiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
     alias power="echo Power: $(pmset -g batt|awk 'NR==2{print $3}'|sed 's/;//g')"
+    alias clsattr="xattr -lr ."
 fi
 
 # Python alias
@@ -87,7 +91,7 @@ alias py3='python3'
 alias ipy='ipython'
 alias ipy2='ipython2'
 alias ipy3='ipython3'
-alias pep='pep8 --ignore=E501'
+alias pep='pycodestyle --ignore=E501'
 alias rmpyc='find . | grep -E "py[co]|__pycache__" | xargs rm -rvf'
 
 # Git alias
@@ -99,7 +103,9 @@ alias gmg='git merge --no-commit --squash'
 
 # virtual activate
 wk () {
-    if [[ -f "$1/bin/activate" ]]; then
+    if [[ -f "$1/.venv/bin/activate" ]]; then
+        source $1/.venv/bin/activate
+    elif [[ -f "$1/bin/activate" ]]; then
         source $1/bin/activate
     elif [[ -f "$1/activate" ]]; then
         source $1/activate
@@ -132,7 +138,11 @@ topgrep() {
 # Proxy
 proxy() {
     if [ -z "$ALL_PROXY" ]; then
-        export ALL_PROXY="socks5://127.0.0.1:1080"
+        if [[ $1 == "-s" ]]; then
+            export ALL_PROXY="socks5://127.0.0.1:1080"
+        else
+            export ALL_PROXY="http://127.0.0.1:1087"
+        fi
         printf 'Proxy on\n';
     else
         unset ALL_PROXY;
@@ -170,6 +180,36 @@ chkip() {
 ent() {
     docker container start $1
     docker exec -it $1 /bin/bash
+}
+
+# fix brew include files
+fixBrewInclude() {
+    cd $BREWHOME/include
+    for dir in `find -L ../opt -name include`
+    do
+        for include in `ls $dir`
+        do
+            local SRC="$dir/$include"
+            if [ -d $SRC ] || [[ ${SRC##*.} == "h" ]]; then
+                local DST="./$include"
+                [[ -e $DST ]] || echo "ln -s $SRC $DST"
+            fi
+        done
+    done
+    cd -
+}
+
+# set filename with crc32
+crcname() {
+    for filename in $*
+    do
+        if [[ -f $filename ]]; then
+            hash_value=`crc32 $filename`
+            ext_name=`echo "${filename##*.}" | tr '[:upper:]' '[:lower:]'`
+            new_name="$hash_value.$ext_name"
+            mv -nv $filename $new_name
+        fi
+    done
 }
 
 # automatic set_window_title when use screen

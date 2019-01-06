@@ -82,6 +82,7 @@ if [ `uname` = "Darwin" ]; then
     alias hidefiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
     alias power="echo Power: $(pmset -g batt|awk 'NR==2{print $3}'|sed 's/;//g')"
     alias clsattr="xattr -lr ."
+    alias tree='tree -N'
 fi
 
 # Python alias
@@ -143,7 +144,7 @@ proxy() {
         else
             export ALL_PROXY="http://127.0.0.1:1087"
         fi
-        printf 'Proxy on\n';
+        printf "Proxy on: $ALL_PROXY\n";
     else
         unset ALL_PROXY;
         printf 'Proxy off\n';
@@ -208,6 +209,17 @@ crcname() {
             ext_name=`echo "${filename##*.}" | tr '[:upper:]' '[:lower:]'`
             new_name="$hash_value.$ext_name"
             mv -nv $filename $new_name
+        fi
+    done
+}
+
+# list files of each dir
+filecount() {
+    for dir in `ls -A $1`
+    do
+        if [ -d $dir ]; then
+            cnt=$(find $dir -type file | wc -l)
+            printf "%6s %s\n" $cnt $dir
         fi
     done
 }

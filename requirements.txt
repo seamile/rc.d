@@ -26,15 +26,22 @@ requests
 selenium
 scrapy
 
-# Style
-pep8
+# CodeStyle
+pycodestyle
 flake8
 pylint
 
 # Data
-pymysql
 redis
+pymysql
+peewee
+
+# Machine Learning
 numpy
+pandas
+scipy
+matplotlib
+seaborn
 
 # Utility
 mistune
@@ -42,3 +49,4 @@ paramiko
 pexpect
 pillow
 pysocks
+pycryptodome

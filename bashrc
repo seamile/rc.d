@@ -25,8 +25,8 @@ fi
 export HISTTIMEFORMAT="[%y-%m-%d_%T]  "
 alias grep='grep -I --color=auto --exclude-dir={.git,.hg,.svn,.venv}'
 export GREP_COLOR='1;31'
-if [ -d $HOME/.bin ]; then
-    export PATH=$HOME/.bin:$PATH
+if [ -d $HOME/.local/bin ]; then
+    export PATH=$HOME/.local/bin:$PATH
 fi
 
 # brew
@@ -66,18 +66,22 @@ alias la='ls -A'
 alias lla='ls -ClhFA'
 
 alias rs='rsync -cvrP --exclude={.git,.hg,.svn,.venv}'
-alias pweb='python -m SimpleHTTPServer'
+alias httpserver='python -m SimpleHTTPServer'
+alias httpserver3='python -m http.server'
 alias psgrep='ps ax|grep -v grep|grep'
 alias tree='tree -C --dirsfirst'
 alias less='less -N'
 alias tkill='tmux kill-session -t'
 alias aria='aria2c -c -x 16 --file-allocation=none'
+alias axel='axel -n 30'
 alias myip='echo $(curl -s https://api.ipify.org)'
+alias ping='ping -i 0.1 -c 10'
 
 # macOS alias
 if [ `uname` = "Darwin" ]; then
+    export HOMEBREW_NO_AUTO_UPDATE=true  # disable homebrew auto update
     alias tailf='tail -F'
-    alias rmds='find ./ | grep ".DS_Store" | xargs rm -fv'
+    alias rmds='find . -type f -name .DS_Store -delete'
     alias showfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
     alias hidefiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
     alias power="echo Power: $(pmset -g batt|awk 'NR==2{print $3}'|sed 's/;//g')"
@@ -93,7 +97,8 @@ alias ipy='ipython'
 alias ipy2='ipython2'
 alias ipy3='ipython3'
 alias pep='pycodestyle --ignore=E501'
-alias rmpyc='find . | grep -E "py[co]|__pycache__" | xargs rm -rvf'
+alias rmpyc='find . | grep -wE "py[co]|__pycache__" | xargs rm -rvf'
+alias pygrep='grep --include="*.py"'
 
 # Git alias
 alias gst='git status -sb'
@@ -161,21 +166,21 @@ gfw() {
 }
 
 # check ip
-chkip() {
-    local PYCODE="import sys,json;o=json.load(sys.stdin);s1='IP : %(query)s\nLoc: %(city)s / %(regionName)s / %(country)s\nPos: %(lat)s / %(lon)s';s2='IP : %(query)s\nInf: %(message)s';s=s2 if 'message' in o else s1;print(s % o);"
-    if [[ $# == 0 ]]; then
-        curl -s "http://ip-api.com/json/" | python -c "$PYCODE"
-    else
-        local IP i=0
-        for IP in $@; do
-            curl -s "http://ip-api.com/json/$IP" | python -c "$PYCODE"
-            ((i++))
-            if [[ $i < $# ]]; then
-                echo ''
-            fi
-        done
-    fi
-}
+# chkip() {
+#     local PYCODE="import sys,json;o=json.load(sys.stdin);s1='IP : %(query)s\nLoc: %(city)s / %(regionName)s / %(country)s\nPos: %(lat)s / %(lon)s';s2='IP : %(query)s\nInf: %(message)s';s=s2 if 'message' in o else s1;print(s % o);"
+#     if [[ $# == 0 ]]; then
+#         curl -s "http://ip-api.com/json/" | python -c "$PYCODE"
+#     else
+#         local IP i=0
+#         for IP in $@; do
+#             curl -s "http://ip-api.com/json/$IP" | python -c "$PYCODE"
+#             ((i++))
+#             if [[ $i < $# ]]; then
+#                 echo ''
+#             fi
+#         done
+#     fi
+# }
 
 # enter docker container
 ent() {
@@ -224,6 +229,12 @@ filecount() {
     done
 }
 
+# download by bee
+sdown() {
+    ssh bee "wget $1 -O /tmp/$2"
+    scp bee:/tmp/$2 $2
+    ssh bee "rm /tmp/$2"
+}
 # automatic set_window_title when use screen
 if [[ "$TERM" == screen* ]]; then
     screen_set_window_title () {

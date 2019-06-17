@@ -61,6 +61,11 @@ plugins=(
     pip
 )
 
+# source zshrc.local
+if [[ -r "$HOME/.zshrc.local" && -r "$HOME/.zshrc.local" ]]; then
+    source $HOME/.zshrc.local
+fi
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -74,9 +79,4 @@ fi
 # source functions.sh
 if [ -f "$HOME/.rc.d/functions.sh" ]; then
     source $HOME/.rc.d/functions.sh
-fi
-
-# source zshrc.local
-if [[ -r "$HOME/.zshrc.local" && -r "$HOME/.zshrc.local" ]]; then
-    source $HOME/.zshrc.local
 fi

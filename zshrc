@@ -62,7 +62,7 @@ plugins=(
 )
 
 # source zshrc.local
-if [[ -r "$HOME/.zshrc.local" && -r "$HOME/.zshrc.local" ]]; then
+if [ -f "$HOME/.zshrc.local" ]; then
     source $HOME/.zshrc.local
 fi
 

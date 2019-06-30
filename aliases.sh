@@ -46,7 +46,7 @@ alias less='less -N'
 alias tkill='tmux kill-session -t'
 alias aria='aria2c -c -x 16 --file-allocation=none'
 alias axel='axel -n 30'
-alias myip='echo $(curl -s https://api.ipify.org)'
+alias myip='curl -s http://seamile.org/myip'
 alias ping='ping -i 0.1 -c 10'
 
 # macOS alias
@@ -80,4 +80,3 @@ alias gdf='git difftool'
 alias glg='git log --stat --graph --max-count=10'
 alias gco='git checkout'
 alias gmg='git merge --no-commit --squash'
-

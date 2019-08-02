@@ -48,6 +48,7 @@ alias aria='aria2c -c -x 16 --file-allocation=none'
 alias axel='axel -n 30'
 alias myip='curl -s http://seamile.org/myip'
 alias ping='ping -i 0.1 -c 10'
+alias vnccnt='netstat -nat|grep -w 5900|grep -c ESTABLISHED '
 
 # macOS alias
 if [ `uname` = "Darwin" ]; then

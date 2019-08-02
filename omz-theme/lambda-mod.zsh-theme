@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-local LAMBDA="%(?,%{$fg_bold[blue]%}λ,%{$fg_bold[red]%}λ)"
+local LAMBDA="%(?,%{$fg_bold[blue]%}λ,%{$fg_bold[red]%}✘)"
 local END="%(?,%{$fg_bold[cyan]%}> ,%{$fg_bold[red]%}> )"
 if [[ "$USER" == "root" ]]; then
     USERCOLOR="red"

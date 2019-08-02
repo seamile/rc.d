@@ -48,30 +48,17 @@ proxy() {
 }
 
 # ssh gate
-gfw() {
-    local GFW_PID=`ps ax|grep -v grep|grep 'ssh -qTfnN -D 7070 root@box'|awk '{print $1}'`
-    if [ ! -e $GFW_PID ]; then
-        kill -9 $GFW_PID
+jmp() {
+    if ! lsof -i:7070 > /dev/null
+    then
+        server=$1 || server='box'
+        ssh -qTfnN -D 7070 root@$server
+        echo "proxy: $server:7070"
+    else
+        echo "port 7070 in used"
     fi
-    ssh -qTfnN -D 7070 root@box
 }
 
-# check ip
-# chkip() {
-#     local PYCODE="import sys,json;o=json.load(sys.stdin);s1='IP : %(query)s\nLoc: %(city)s / %(regionName)s / %(country)s\nPos: %(lat)s / %(lon)s';s2='IP : %(query)s\nInf: %(message)s';s=s2 if 'message' in o else s1;print(s % o);"
-#     if [[ $# == 0 ]]; then
-#         curl -s "http://ip-api.com/json/" | python -c "$PYCODE"
-#     else
-#         local IP i=0
-#         for IP in $@; do
-#             curl -s "http://ip-api.com/json/$IP" | python -c "$PYCODE"
-#             ((i++))
-#             if [[ $i < $# ]]; then
-#                 echo ''
-#             fi
-#         done
-#     fi
-# }
 
 # enter docker container
 ent() {
@@ -125,4 +112,15 @@ sdown() {
     ssh bee "wget $1 -O /tmp/$2"
     scp bee:/tmp/$2 $2
     ssh bee "rm /tmp/$2"
+}
+
+# md5sum
+md5sum() {
+    for fname in $@
+    do
+        if [ -f $fname ]; then
+            checksum=`md5 -q $fname`
+            echo "$checksum  $fname"
+        fi
+    done
 }

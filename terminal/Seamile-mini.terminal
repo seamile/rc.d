@@ -237,7 +237,7 @@
 	<key>BlinkText</key>
 	<true/>
 	<key>CommandString</key>
-	<string>/usr/local/bin/tmux</string>
+	<string></string>
 	<key>CursorBlink</key>
 	<true/>
 	<key>CursorColor</key>
@@ -255,7 +255,7 @@
 	<data>
 	YnBsaXN0MDDUAQIDBAUGGBlYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
 	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QVk5TU2l6ZVhOU2ZGbGFnc1ZOU05hbWVWJGNs
-	YXNzI0AwAAAAAAAAEBCAAoADXxAcTWVzbG9MR01Gb3JQb3dlcmxpbmUtUmVndWxhctIT
+	YXNzI0AsAAAAAAAAEBCAAoADXxAcTWVzbG9MR01Gb3JQb3dlcmxpbmUtUmVndWxhctIT
 	FBUWWiRjbGFzc25hbWVYJGNsYXNzZXNWTlNGb250ohUXWE5TT2JqZWN0XxAPTlNLZXll
 	ZEFyY2hpdmVy0RobVHJvb3SAAQgRGiMtMjc8QktSW2JpcnR2eJecp7C3usPV2N0AAAAA
 	AAABAQAAAAAAAAAcAAAAAAAAAAAAAAAAAAAA3w==
@@ -331,13 +331,13 @@
 	<key>UseBrightBold</key>
 	<true/>
 	<key>columnCount</key>
-	<integer>256</integer>
+	<integer>80</integer>
 	<key>fontAllowsDisableAntialias</key>
 	<integer>1</integer>
 	<key>name</key>
-	<string>Seamile-tmux</string>
+	<string>Seamile-mini</string>
 	<key>rowCount</key>
-	<integer>128</integer>
+	<integer>24</integer>
 	<key>shellExitAction</key>
 	<integer>0</integer>
 	<key>type</key>

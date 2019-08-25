@@ -50,3 +50,4 @@ pexpect
 pillow
 pysocks
 pycryptodome
+mycli

@@ -29,9 +29,9 @@ endif
 
 "自定义
 color desert
+set t_Co=256
 set background=dark     "背景色
 set nu
-set hlsearch
 set nocompatible        "非兼容模式
 set ruler               "在左下角显示当前文件所在行
 set report=0            "显示修改次数
@@ -59,13 +59,21 @@ set expandtab
 set smarttab
 set backspace=2     "退格键可以删除任何东西
 
-" 当前行高亮，及 vimdiff 高亮配置
+" 当前行高亮
 set cursorline
-highlight CursorLine cterm=none     ctermfg=none      ctermbg=black
-highlight DiffAdd    cterm=reverse  ctermfg=darkgreen ctermbg=black
-highlight DiffDelete cterm=none     ctermfg=gray      ctermbg=black
-highlight DiffChange cterm=none     ctermfg=none      ctermbg=black
-highlight DiffText   cterm=bold     ctermfg=yellow       ctermbg=red
+highlight CursorLine cterm=none    ctermfg=none     ctermbg=235
+highlight LineNr     cterm=none    ctermfg=gray     ctermbg=none
+
+" 搜索结果高亮
+set hlsearch
+highlight Search     cterm=none    ctermfg=black    ctermbg=blue
+
+" vimdiff 高亮
+highlight DiffAdd    cterm=reverse ctermfg=darkcyan ctermbg=black
+highlight DiffDelete cterm=none    ctermfg=gray     ctermbg=239
+highlight DiffChange cterm=none    ctermfg=none     ctermbg=239
+highlight DiffText   cterm=bold    ctermfg=yellow   ctermbg=darkred
+
 auto BufWritePre * sil %s/\s\+$//ge "保存时删除行尾空白
 
 "映射常用操作

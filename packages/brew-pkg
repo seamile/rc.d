@@ -9,7 +9,6 @@ gdbm
 genact
 go
 htop
-mongodb
 mysql
 ncurses
 netcat
@@ -23,6 +22,7 @@ postgresql
 pstree
 readline
 redis
+rsync
 sl
 sqlite
 telnet

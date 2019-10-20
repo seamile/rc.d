@@ -45,7 +45,7 @@ ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg_bold[red]%}⤭  "
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg_bold[yellow]%}? "
 
 # Format for git_prompt_ahead()
-ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg_bold[yellow]%}⤒  "
+ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg_bold[green]%}⤒  "
 
 
 # Format for git_prompt_long_sha() and git_prompt_short_sha()

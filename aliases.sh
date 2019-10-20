@@ -37,7 +37,7 @@ alias ll='ls -ClhF'
 alias la='ls -A'
 alias lla='ls -ClhFA'
 
-alias rs='rsync -cvrP --exclude={.git,.hg,.svn,.venv}'
+alias rs='rsync -cvrzP --exclude={.git,.hg,.svn,.venv,.DS_Store}'
 alias httpserver='python -m SimpleHTTPServer'
 alias httpserver3='python -m http.server'
 alias psgrep='ps ax|grep -v grep|grep'

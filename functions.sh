@@ -36,7 +36,7 @@ topgrep() {
 proxy() {
     if [ -z "$ALL_PROXY" ]; then
         if [[ $1 == "-s" ]]; then
-            export ALL_PROXY="socks5://127.0.0.1:1080"
+            export ALL_PROXY="socks5://127.0.0.1:1086"
         else
             export ALL_PROXY="http://127.0.0.1:1087"
         fi
@@ -49,13 +49,16 @@ proxy() {
 
 # ssh gate
 jmp() {
-    if ! lsof -i:7070 > /dev/null
+    host=${1:-"box"}
+    port=${2:-1086}
+    if ! lsof -sTCP:LISTEN -iTCP:$port > /dev/null
     then
-        server=$1 || server='box'
-        ssh -qTfnN -D 7070 root@$server
-        echo "proxy: $server:7070"
+        ssh -qTfnN -D $port root@$host
+        echo "Proxy:"
+        echo "    remote host: $host"
+        echo "    local  port: $port"
     else
-        echo "port 7070 in used"
+        echo "local port $port in used"
     fi
 }
 

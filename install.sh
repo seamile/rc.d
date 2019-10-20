@@ -32,19 +32,34 @@ function install_brew() {
 }
 
 
-function install_software_for_macos() {
-    echo "exec: install_software_for_macos"
+function install_packages_for_macos() {
+    echo "exec: install_packages_for_macos"
 
     brew -v update
     brew install `cat $RC_DIR/packages/brew-pkg`
-    brew cask install `cat $RC_DIR/packages/cask-pkg`
 
     echo 'done!'
 }
 
 
-function install_software_for_ubuntu() {
-    echo "exec: install_software_for_ubuntu"
+function install_softwares_for_macos() {
+    echo "exec: install_softwares_for_macos"
+
+    for pkg in `cat $RC_DIR/packages/cask-pkg`
+    do
+        read -p "Do you want to install '$pkg'? (y/n) " confirm
+        if [[ $confirm == "y" ]]
+        then
+            brew cask install $pkg
+        fi
+    done
+
+    echo "done!"
+}
+
+
+function install_packages_for_ubuntu() {
+    echo "exec: install_packages_for_ubuntu"
 
     sudo apt update -y
     sudo apt upgrade -y
@@ -54,8 +69,8 @@ function install_software_for_ubuntu() {
 }
 
 
-function install_software_for_fedora() {
-    echo "exec: install_software_for_fedora"
+function install_packages_for_fedora() {
+    echo "exec: install_packages_for_fedora"
 
     sudo yum update
     sudo yum install -y `cat $RC_DIR/packages/yum-pkg`
@@ -64,15 +79,15 @@ function install_software_for_fedora() {
 }
 
 
-function install_softwares() {
-    echo "exec: install_softwares"
+function install_sys_packages() {
+    echo "exec: install_sys_packages"
 
     if [[ `uname` == 'Darwin' ]]; then
-        install_software_for_macos
+        install_packages_for_macos
     elif `exist apt-get`; then
-        install_software_for_ubuntu
+        install_packages_for_ubuntu
     elif `exist yum`; then
-        install_software_for_fedora
+        install_packages_for_fedora
     else
         echo 'not found any package installer'
     fi
@@ -150,8 +165,8 @@ function install_python_pkg() {
 }
 
 
-function clone_rc() {
-    echo "exec: clone_rc"
+function clone_rc_d() {
+    echo "exec: clone_rc_d"
 
     if [ ! -d $RC_DIR ]; then
         git clone $RC_URL $RC_DIR
@@ -213,7 +228,7 @@ function install_all() {
     install_pyenv
     install_python
     install_python_pkg
-    clone_rc
+    clone_rc_d
     setup_env
     setup_zsh_theme
 }
@@ -223,15 +238,17 @@ cat << EOF
 select a function code:
 ===============================
 【 1 】 install_brew
-【 2 】 install_software
+【 2 】 install_sys_packages
 【 3 】 install_powerline_fonts
 【 4 】 install_ohmyzsh
 【 5 】 install_pyenv
 【 6 】 install_python
 【 7 】 install_python_pkg
-【 8 】 clone_rc
+【 8 】 clone_rc_d
 【 9 】 setup_env
 【 0 】 setup_zsh_theme
+【 a 】 install_all;;
+【 b 】 install_softwares_for_macos;;
 【 * 】 exit
 ===============================
 EOF
@@ -246,15 +263,17 @@ fi
 
 case $choice in
     1) install_brew;;
-    2) install_softwares;;
+    2) install_sys_packages;;
     3) install_powerline_fonts;;
     4) install_ohmyzsh;;
     5) install_pyenv;;
     6) install_python;;
     7) install_python_pkg;;
-    8) clone_rc;;
+    8) clone_rc_d;;
     9) setup_env;;
     0) setup_zsh_theme;;
+    a) install_all;;
+    b) install_softwares_for_macos;;
     *) echo 'Bye' && exit;;
 esac
 

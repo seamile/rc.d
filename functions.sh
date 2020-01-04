@@ -1,5 +1,5 @@
 # virtual activate
-wk () {
+wk() {
     if [[ -f "$1/.venv/bin/activate" ]]; then
         source $1/.venv/bin/activate
     elif [[ -f "$1/bin/activate" ]]; then
@@ -126,4 +126,11 @@ md5sum() {
             echo "$checksum  $fname"
         fi
     done
+}
+
+# kill process which use the port
+kport() {
+    port=$1
+    pids=`lsof -s tcp:listen -i:$port|awk 'NR>1 {print $2}'|sort|uniq`
+    [ -n "$pids" ] && kill $pids
 }

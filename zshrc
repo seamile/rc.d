@@ -72,7 +72,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 DEFAULT_USER=`whoami`
 
-autoload -U compinit && compinit
+# autoload -U compinit && compinit
 
 # source aliases.sh
 if [ -f "$HOME/.rc.d/aliases.sh" ]; then

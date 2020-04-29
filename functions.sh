@@ -128,6 +128,23 @@ md5sum() {
     done
 }
 
+
+# find the process which use the port
+psport() {
+    if [[ "$1" == "-" ]]; then
+        pids=`sudo lsof -s tcp:listen -i:$2|awk 'NR>1 {print $2}'|sort|uniq|paste -s -d "," -`
+    else
+        pids=`lsof -s tcp:listen -i:$1|awk 'NR>1 {print $2}'|sort|uniq|paste -s -d "," -`
+    fi
+
+
+    if [ -z "$pids" ];then
+        echo "the port $1 is not used"
+    else
+        ps u -p $pids
+    fi
+}
+
 # kill process which use the port
 kport() {
     port=$1

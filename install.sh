@@ -3,19 +3,27 @@
 CURRENT_DIR=$PWD
 
 RC_DIR="$HOME/.rc.d"
+LOCAL_BIN="$HOME/.local/bin"
 
-PYTHON_VERSION='3.6.9'
+PYTHON_VERSION='3.8.2'
 BREW_URL='https://raw.githubusercontent.com/Homebrew/install/master/install'
 OH_MY_ZSH_URL='https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh'
 POWERLINE_FONTS_URL='https://github.com/powerline/fonts.git'
-PYENV_URL='https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer'
+PYENV_URL='https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer'
 RC_URL='https://github.com/seamile/rc.d.git'
-UTILS_URL='https://github.com/seamile/utilities.git'
+UTILS_URL='https://github.com/seamile/utils.git'
 
 
 function exist() {
     which $1 > /dev/null
     return $?
+}
+
+
+function ensure_rc() {
+    if [ ! -d $RC_DIR ]; then
+        git clone $RC_URL $RC_DIR
+    fi
 }
 
 
@@ -32,18 +40,10 @@ function install_brew() {
 }
 
 
-function install_packages_for_macos() {
-    echo "exec: install_packages_for_macos"
-
-    brew -v update
-    brew install `cat $RC_DIR/packages/brew-pkg`
-
-    echo 'done!'
-}
-
-
 function install_softwares_for_macos() {
     echo "exec: install_softwares_for_macos"
+
+    ensure_rc
 
     for pkg in `cat $RC_DIR/packages/cask-pkg`
     do
@@ -58,36 +58,27 @@ function install_softwares_for_macos() {
 }
 
 
-function install_packages_for_ubuntu() {
-    echo "exec: install_packages_for_ubuntu"
-
-    sudo apt update -y
-    sudo apt upgrade -y
-    sudo apt install -y `cat $RC_DIR/packages/apt-pkg`
-
-    echo 'done!'
-}
-
-
-function install_packages_for_fedora() {
-    echo "exec: install_packages_for_fedora"
-
-    sudo yum update
-    sudo yum install -y `cat $RC_DIR/packages/yum-pkg`
-
-    echo 'done!'
-}
-
-
 function install_sys_packages() {
     echo "exec: install_sys_packages"
 
+    ensure_rc
+
     if [[ `uname` == 'Darwin' ]]; then
-        install_packages_for_macos
+        echo "installing brew packages ..."
+        brew -v update
+        brew install `cat $RC_DIR/packages/brew-pkg`
+
     elif `exist apt-get`; then
-        install_packages_for_ubuntu
+        echo "installing deb packages ..."
+        sudo apt update -y
+        sudo apt upgrade -y
+        sudo apt install -y `cat $RC_DIR/packages/apt-pkg`
+
     elif `exist yum`; then
-        install_packages_for_fedora
+        echo "installing rpm packages ..."
+        sudo yum update
+        sudo yum install -y `cat $RC_DIR/packages/yum-pkg`
+
     else
         echo 'not found any package installer'
     fi
@@ -144,7 +135,7 @@ function install_python() {
     echo "exec: install_python"
 
     if ! pyenv versions | grep $PYTHON_VERSION > /dev/null; then
-        env PYTHON_CONFIGURE_OPTS="--enable-framework" pyenv install -kv $PYTHON_VERSION
+        pyenv install -kv $PYTHON_VERSION
     else
         echo "Python v$PYTHON_VERSION is already installed"
     fi
@@ -158,6 +149,8 @@ function install_python() {
 function install_python_pkg() {
     echo "exec: install_python_pkg"
 
+    ensure_rc
+
     pyenv global $PYTHON_VERSION
     pip install -r $RC_DIR/packages/python-pkg
 
@@ -165,40 +158,38 @@ function install_python_pkg() {
 }
 
 
-function clone_rc_d() {
-    echo "exec: clone_rc_d"
+function setup_utils() {
+    echo "exec: setup_utils"
 
-    if [ ! -d $RC_DIR ]; then
-        git clone $RC_URL $RC_DIR
-    else
-        echo "rc.d is already cloned"
-    fi
+    mkdir -p $LOCAL_BIN
+    cd $LOCAL_BIN
+    git clone $UTILS_URL utils
 
-    git clone $UTILS_URL $RC_DIR/utilities
-
-    echo 'done!'
+    for u_path in `find utils -maxdepth 1 -perm 0755 -type f`
+    do
+        ln -sfv $u_path `basename $u_path`
+    done
 }
 
 
 function setup_env() {
     echo "exec: setup_env"
 
-    # mkdir .local/bin
-    mkdir -p $HOME/.local/bin
+    ensure_rc
 
     # link rc files
     cd $HOME
-    ln -sf .rc.d/gitconfig .gitconfig
-    ln -sf .rc.d/vimrc .vimrc
-    ln -sf .rc.d/zshrc .zshrc
-    ln -sf .rc.d/bashrc .bashrc
-    ln -sf .rc.d/tmux.conf .tmux.conf
-    ln -sf .rc.d/myclirc .myclirc
+    ln -sfv .rc.d/gitconfig .gitconfig
+    ln -sfv .rc.d/vimrc .vimrc
+    ln -sfv .rc.d/zshrc .zshrc
+    ln -sfv .rc.d/bashrc .bashrc
+    ln -sfv .rc.d/tmux.conf .tmux.conf
+    ln -sfv .rc.d/myclirc .myclirc
 
     # link aria2
     mkdir -p $HOME/.aria2
     cd $HOME/.aria2
-    ln -sf $RC_DIR/aria2.conf aria2.conf
+    ln -sfv $RC_DIR/aria2.conf aria2.conf
 
     touch $HOME/.zshrc.local
 
@@ -209,26 +200,34 @@ function setup_env() {
 function setup_zsh_theme() {
     echo "exec: setup_zsh_theme"
 
-    cd $HOME/.oh-my-zsh/custom/themes
-    for name in `ls $RC_DIR/omz-theme`
-    do
-        # link zsh themes
-        ln -sf $RC_DIR/omz-theme/$name $name
-    done
+    ensure_rc
+
+    if [ -d "$HOME/.oh-my-zsh/custom/themes" ]; then
+        cd $HOME/.oh-my-zsh/custom/themes
+        for name in `ls $RC_DIR/omz-theme`
+        do
+            # link zsh themes
+            ln -sfv $RC_DIR/omz-theme/$name $name
+        done
+    else
+        echo "Please install ohmyzsh first."
+        exit 1
+    fi
 
     echo 'done!'
 }
 
 
 function install_all() {
+    ensure_rc
     install_brew
-    install_software
+    install_sys_packages
     install_powerline_fonts
     install_ohmyzsh
     install_pyenv
     install_python
     install_python_pkg
-    clone_rc_d
+    setup_utils
     setup_env
     setup_zsh_theme
 }
@@ -237,19 +236,19 @@ function install_all() {
 cat << EOF
 select a function code:
 ===============================
-【 1 】 install_brew
-【 2 】 install_sys_packages
-【 3 】 install_powerline_fonts
-【 4 】 install_ohmyzsh
-【 5 】 install_pyenv
-【 6 】 install_python
-【 7 】 install_python_pkg
-【 8 】 clone_rc_d
-【 9 】 setup_env
-【 0 】 setup_zsh_theme
-【 a 】 install_all;;
-【 b 】 install_softwares_for_macos;;
-【 * 】 exit
+【 1 】 Install brew
+【 2 】 Install sys packages
+【 3 】 Install powerline fonts
+【 4 】 Install oh-my-zsh
+【 5 】 Install pyenv
+【 6 】 Install python
+【 7 】 Install python pkg
+【 8 】 Setup utils
+【 9 】 Setup env
+【 0 】 Setup zsh theme
+【 a 】 Install all;;
+【 x 】 Install softwares for macos;;
+【 * 】 Exit
 ===============================
 EOF
 
@@ -269,11 +268,11 @@ case $choice in
     5) install_pyenv;;
     6) install_python;;
     7) install_python_pkg;;
-    8) clone_rc_d;;
+    8) setup_utils;;
     9) setup_env;;
     0) setup_zsh_theme;;
     a) install_all;;
-    b) install_softwares_for_macos;;
+    x) install_softwares_for_macos;;
     *) echo 'Bye' && exit;;
 esac
 

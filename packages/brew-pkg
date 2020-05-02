@@ -7,8 +7,10 @@ ffmpeg
 gcc
 gdbm
 genact
+gnutls
 go
 htop
+hugo
 mysql
 ncurses
 netcat

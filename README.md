@@ -3,8 +3,16 @@ rc.d
 
 My rc files and other configs here.
 
-## install via `curl`
+## Depend
+
+- wget
+- curl
+- sudo
+- git
+
+## Install
 
 ```
-curl -L https://raw.githubusercontent.com/seamile/rc.d/master/install.sh | bash
+wget https://raw.githubusercontent.com/seamile/rc.d/master/install.sh
+bash install.sh a
 ```

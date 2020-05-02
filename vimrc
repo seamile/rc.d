@@ -40,6 +40,7 @@ set fileencodings=ucs-bom,UTF-8,GBK,BIG5,latin1
 set fileencoding=UTF-8
 set fileformat=unix     "换行使用unix方式
 set wrap
+set linebreak
 set ambiwidth=double
 set noerrorbells        "不显示响铃
 set visualbell          "可视化铃声

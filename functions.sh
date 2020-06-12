@@ -48,3 +48,16 @@ fixBrewInclude() {
     done
     cd -
 }
+
+
+# kill tmux's session
+tkill() {
+    if [[ "$1" == "-a" ]]; then
+        tmux kill-session -a
+    else
+        for target in $@
+        do
+            tmux kill-session -t $target
+        done
+    fi
+}

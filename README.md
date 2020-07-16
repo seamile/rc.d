@@ -13,6 +13,5 @@ My rc files and other configs here.
 ## Install
 
 ```
-wget https://raw.githubusercontent.com/seamile/rc.d/master/install.sh
-bash install.sh a
+bash -c "$(wget https://raw.githubusercontent.com/seamile/rc.d/master/install.sh -O -)"
 ```

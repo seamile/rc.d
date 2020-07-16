@@ -246,8 +246,8 @@ select a function code:
 【 8 】 Setup utils
 【 9 】 Setup env
 【 0 】 Setup zsh theme
-【 a 】 Install all;;
-【 x 】 Install softwares for macos;;
+【 a 】 Install all
+【 x 】 Install softwares for macos
 【 * 】 Exit
 ===============================
 EOF

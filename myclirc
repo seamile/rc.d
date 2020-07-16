@@ -64,8 +64,8 @@ wider_completion_menu = False
 # \s - Seconds of the current time
 # \t - Product type (Percona, MySQL, MariaDB)
 # \u - Username
-prompt = '\u@\h [\R:\m:\s]\n[\t: \d] > '
-prompt_continuation = '-> '
+prompt = '[\t: \d] (\u) \R:\m:\s\n > '
+prompt_continuation = ' >'
 
 # Skip intro info on startup and outro info on exit
 less_chatty = True
@@ -81,7 +81,7 @@ auto_vertical_output = True
 keyword_casing = auto
 
 # disabled pager on startup
-enable_pager = True
+enable_pager = False
 
 # Custom colors for the completion menu, toolbar, etc.
 [colors]

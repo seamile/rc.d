@@ -14,10 +14,10 @@ alias l='ls -Clho'
 alias ll='ls -ClhF'
 alias la='ls -A'
 alias lla='ls -ClhFA'
-alias rs='rsync -cvrzP --exclude={.git,.hg,.svn,.venv,.DS_Store}'
+alias rs='rsync -crvzpP --exclude={.git,.venv,.DS_Store}'
 alias httpserver='python -m SimpleHTTPServer'
 alias httpserver3='python -m http.server'
-alias grep='grep -I --color=auto --exclude-dir={.git,.hg,.svn,.venv}'
+alias grep='grep -I --color=auto --exclude-dir={.git,.venv}'
 alias psgrep='ps ax|grep -v grep|grep'
 alias tree='tree -C --dirsfirst'
 alias less='less -N'
@@ -36,7 +36,6 @@ if [ `uname` = "Darwin" ]; then
     alias showfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
     alias hidefiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
     alias power="echo Power: $(pmset -g batt|awk 'NR==2{print $3}'|sed 's/;//g')"
-    alias clsattr="xattr -lr ."
     alias tree='tree -N'
 fi
 
@@ -65,7 +64,7 @@ alias gco='git checkout'
 alias gmg='git merge --no-commit --squash'
 
 # brew
-if which brew > /dev/null; then
+if command -v brew >/dev/null 2>&1; then
     # BREWHOME=`brew --prefix`
     BREWHOME="/usr/local"
     export LDFLAGS="-L$BREWHOME/lib"
@@ -80,7 +79,7 @@ export PATH="$GOPATH/bin:$PATH"
 # Pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-if which pyenv > /dev/null; then
+if command -v pyenv >/dev/null 2>&1; then
     # eval "$(pyenv init -)";
     # eval "$(pyenv virtualenv-init -)"
     # pyenv alias

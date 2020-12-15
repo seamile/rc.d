@@ -60,6 +60,7 @@ plugins=(
     golang
     docker
     pip
+    flutter
 )
 
 # source zshrc.local

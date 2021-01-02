@@ -15,8 +15,8 @@ alias ll='ls -ClhF'
 alias la='ls -A'
 alias lla='ls -ClhFA'
 alias rs='rsync -crvzpP --exclude={.git,.venv,.DS_Store}'
-alias httpserver='python -m SimpleHTTPServer'
-alias httpserver3='python -m http.server'
+alias httpserver='python -m http.server'
+alias httpserver2='python -m SimpleHTTPServer'
 alias grep='grep -I --color=auto --exclude-dir={.git,.venv}'
 alias psgrep='ps ax|grep -v grep|grep'
 alias tree='tree -C --dirsfirst'
@@ -25,7 +25,8 @@ alias aria='aria2c -c -x 16 --file-allocation=none'
 alias axel='axel -n 30'
 alias myip='curl -s https://seamile.cn/myip'
 alias ping='ping -i 0.1 -c 30'
-alias vnccnt='netstat -nat|grep -w 5900|grep -c ESTABLISHED '
+alias ip4="ifconfig | grep -w inet | awk '{print \$2}'| sort"
+alias ip6="ifconfig | grep -w inet6 | awk '{print \$2}'| sort"
 
 # macOS alias
 if [ `uname` = "Darwin" ]; then

@@ -14,30 +14,29 @@ alias l='ls -Clho'
 alias ll='ls -ClhF'
 alias la='ls -A'
 alias lla='ls -ClhFA'
-alias rs='rsync -crvzpP --exclude={.git,.venv,.DS_Store}'
+alias rs='rsync -crvzpP --exclude={.git,.venv,.DS_Store,__pycache__}'
 alias httpserver='python -m http.server'
 alias httpserver2='python -m SimpleHTTPServer'
 alias grep='grep -I --color=auto --exclude-dir={.git,.venv}'
 alias psgrep='ps ax|grep -v grep|grep'
-alias tree='tree -C --dirsfirst'
+alias tree='tree -N -C --dirsfirst'
 alias less='less -N'
 alias aria='aria2c -c -x 16 --file-allocation=none'
 alias axel='axel -n 30'
-alias myip='curl -s https://seamile.cn/myip'
+alias myip='curl -Ls http://seamile.cn/myip'
 alias ping='ping -i 0.1 -c 30'
 alias ip4="ifconfig | grep -w inet | awk '{print \$2}'| sort"
 alias ip6="ifconfig | grep -w inet6 | awk '{print \$2}'| sort"
+alias tailf='tail -F'
 
 # macOS alias
 if [ `uname` = "Darwin" ]; then
     export HOMEBREW_NO_AUTO_UPDATE=true  # disable homebrew auto update
     export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.aliyun.com/homebrew/homebrew-bottles"
-    alias tailf='tail -F'
     alias rmds='find . -type f -name .DS_Store -delete'
     alias showfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
     alias hidefiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
     alias power="echo Power: $(pmset -g batt|awk 'NR==2{print $3}'|sed 's/;//g')"
-    alias tree='tree -N'
 fi
 
 # Python alias
@@ -74,8 +73,10 @@ if command -v brew >/dev/null 2>&1; then
 fi
 
 # Golang env
-export GOPATH="$HOME/src/Golang"
-export PATH="$GOPATH/bin:$PATH"
+if command -v go >/dev/null 2>&1; then
+    export GOPATH="$HOME/src/Golang"
+    export PATH="$GOPATH/bin:$PATH"
+fi
 
 # Pyenv
 export PYENV_ROOT="$HOME/.pyenv"

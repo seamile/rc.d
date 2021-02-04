@@ -57,7 +57,9 @@ tkill() {
     else
         for target in $@
         do
-            tmux kill-session -t $target
+            if tmux kill-session -t $target; then
+                echo "Tmux session $target has been killed"
+            fi
         done
     fi
 }

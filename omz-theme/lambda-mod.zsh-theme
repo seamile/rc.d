@@ -1,20 +1,13 @@
 #!/usr/bin/env zsh
 
 local LAMBDA="%(?,%{$fg_bold[blue]%}λ,%{$fg_bold[red]%}✘)"
-local END="%(?,%{$fg_bold[blue]%}❯ ,%{$fg_bold[red]%}❯ )"
+local END="%(?,%{$fg_bold[blue]%}❯,%{$fg_bold[red]%}❯)"
 
 # set username's color
 if [[ "$USER" == "root" ]]; then
     local USERCOLOR="red"
 else
     local USERCOLOR="yellow"
-fi
-
-# check if current dir is a Git repo
-if which git > /dev/null && git rev-parse --git-dir > /dev/null 2>&1; then
-    local IS_GIT_REPO=true
-else
-    local IS_GIT_REPO=false
 fi
 
 
@@ -47,12 +40,12 @@ ZSH_THEME_GIT_PROMPT_PREFIX=" ["
 ZSH_THEME_GIT_PROMPT_SUFFIX="]%{$reset_color%}"
 
 # Format for git_prompt_status()
-ZSH_THEME_GIT_PROMPT_ADDED="%{$fg_bold[green]%}✚ "
+ZSH_THEME_GIT_PROMPT_ADDED="%{$fg_bold[green]%}✚  "
 ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg_bold[green]%}⤒  "
 ZSH_THEME_GIT_PROMPT_BEHIND="%{$fg_bold[green]%}⤓  "
 ZSH_THEME_GIT_PROMPT_DELETED="%{$fg_bold[red]%}✖  "
 ZSH_THEME_GIT_PROMPT_DIVERGED="%{$fg_bold[yellow]%}ᚶ  "
-ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg_bold[red]%}● "
+ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg_bold[red]%}●  "
 ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg_bold[magenta]%}⤳  "
 ZSH_THEME_GIT_PROMPT_STASHED="%{$fg_bold[cyan]%}☑  "
 ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg_bold[red]%}⤭  "
@@ -61,6 +54,12 @@ ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg_bold[yellow]%}? "
 # Format for git_prompt_long_sha() and git_prompt_short_sha()
 ZSH_THEME_GIT_PROMPT_SHA_BEFORE=" %{$fg_bold[white]%}[%{$fg_bold[blue]%}"
 ZSH_THEME_GIT_PROMPT_SHA_AFTER="%{$fg_bold[white]%}]"
+
+function system_info() {
+    [[ ! -w "$PWD" ]] && echo -n "%{$fg_bold[cyan]%} "
+    [[ $(jobs -l | wc -l) -gt 0 ]] && echo -n "%{$fg_no_bold[white]%}⚙ "
+    echo -n "%{$reset_color%}"
+}
 
 function git_prompt_info() {
     local ref
@@ -82,7 +81,7 @@ function git_prompt_info() {
 # return anything in this case. So wrap it in another function and check
 # for an empty string.
 function check_git_prompt_info() {
-    if [[ $IS_GIT_REPO = true ]] ; then
+    if which git > /dev/null && git rev-parse --git-dir > /dev/null 2>&1; then
         echo -e "$(git_prompt_info) $(git_prompt_status)\n$END"
     else
         echo "$END"
@@ -90,18 +89,19 @@ function check_git_prompt_info() {
 }
 
 function get_right_prompt() {
-    if [[ $IS_GIT_REPO = true ]] ; then
+    if which git > /dev/null && git rev-parse --git-dir > /dev/null 2>&1; then
         echo -n "$(git_prompt_short_sha)%{$reset_color%}"
     else
         echo -n "%{$reset_color%}"
     fi
 }
 
-PROMPT=$LAMBDA'\
- %{$fg_bold[$USERCOLOR]%}%n\
- %{$fg_bold[green]%}⤳ %m\
- %{$fg_no_bold[blue]%}[%3~]\
- $(check_git_prompt_info)\
-%{$reset_color%}'
+PROMPT=$LAMBDA' \
+%{$fg_bold[$USERCOLOR]%}%n \
+%{$fg_bold[green]%}⤳ %m \
+%{$fg_no_bold[blue]%}[%3~] \
+$(system_info)\
+$(check_git_prompt_info)\
+%{$reset_color%} '
 
 RPROMPT='$(get_right_prompt)'

@@ -134,6 +134,10 @@ function install_pyenv() {
 function install_python() {
     echo "exec: install_python"
 
+    # init pyenv
+    export PATH="$HOME/.pyenv/bin:$PATH"
+    eval "$(pyenv init -)"
+
     if ! pyenv versions | grep $PYTHON_VERSION > /dev/null; then
         pyenv install -kv $PYTHON_VERSION
     else
@@ -163,7 +167,10 @@ function setup_utils() {
 
     mkdir -p $LOCAL_BIN
     cd $LOCAL_BIN
-    git clone $UTILS_URL utils
+    if [ ! -d "utils" ];then
+        rm -rf utils
+        git clone $UTILS_URL utils
+    fi
 
     for u_path in `find utils -maxdepth 1 -perm 0755 -type f`
     do

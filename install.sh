@@ -165,7 +165,7 @@ function setup_utils() {
     cd $LOCAL_BIN
     git clone $UTILS_URL utils
 
-    for u_path in `find utils -maxdepth 1 -perm 0755 -type f`
+    for u_path in `find utils -maxdepth 1 -perm -755 -type f`
     do
         ln -sfv $u_path `basename $u_path`
     done

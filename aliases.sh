@@ -93,8 +93,12 @@ if command -v pyenv >/dev/null 2>&1; then
     alias chgpy='pyenv global'
 fi
 
-# Flutter CN mirror
+# Flutter
 if command -v flutter >/dev/null 2>&1; then
+    # Flutter src dir
+    export FLUTTER_ROOT="$HOME/.local/flutter"
+    export FLUTTER_SRC="$FLUTTER_ROOT/packages/flutter/lib/src"
+    # Flutter CN mirror
     export PUB_HOSTED_URL='https://pub.flutter-io.cn'
     export FLUTTER_STORAGE_BASE_URL='https://storage.flutter-io.cn'
 fi

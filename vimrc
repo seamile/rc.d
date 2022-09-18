@@ -28,7 +28,8 @@ if filereadable("/etc/vim/vimrc.local")
 endif
 
 "自定义
-color desert
+"color desert
+color default
 set t_Co=256
 set background=dark     "背景色
 set nu

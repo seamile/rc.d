@@ -11,10 +11,11 @@ fi
 
 # Custom alias
 alias l='ls -Clho'
+alias li='ls -Clhoi'
 alias ll='ls -ClhF'
 alias la='ls -A'
 alias lla='ls -ClhFA'
-alias rs='rsync -crvzpP --exclude={.git,.venv,.DS_Store,__pycache__,.vscode,.mypy_cache}'
+alias rs='rsync -crvzpHP --exclude={.git,.venv,.DS_Store,__pycache__,.vscode,.mypy_cache}'
 alias httpserver='python -m http.server'
 alias httpserver2='python -m SimpleHTTPServer'
 alias grep='grep -I --color=auto --exclude-dir={.git,.venv}'
@@ -62,6 +63,8 @@ fi
 alias gst='git status -sb'
 alias gdf='git difftool'
 alias glg='git log --stat --graph --max-count=10'
+alias gpl='git pull'
+alias gci='git commit'
 alias gco='git checkout'
 alias gmg='git merge --no-commit --squash'
 
@@ -78,6 +81,7 @@ fi
 if command -v go >/dev/null 2>&1; then
     export GOPATH="$HOME/src/Golang"
     export PATH="$GOPATH/bin:$PATH"
+    export GOPROXY="https://goproxy.cn"
 fi
 
 # Pyenv

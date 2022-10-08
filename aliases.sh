@@ -15,6 +15,8 @@ alias li='ls -Clhoi'
 alias ll='ls -ClhF'
 alias la='ls -A'
 alias lla='ls -ClhFA'
+alias cp='cp -nv'
+alias mv='mv -nv'
 alias rs='rsync -crvzpHP --exclude={.git,.venv,.DS_Store,__pycache__,.vscode,.mypy_cache}'
 alias httpserver='python -m http.server'
 alias httpserver2='python -m SimpleHTTPServer'
@@ -77,13 +79,6 @@ if command -v brew >/dev/null 2>&1; then
     export PKG_CONFIG_PATH="$BREWHOME/lib/pkgconfig"
 fi
 
-# Golang env
-if command -v go >/dev/null 2>&1; then
-    export GOPATH="$HOME/src/Golang"
-    export PATH="$GOPATH/bin:$PATH"
-    export GOPROXY="https://goproxy.cn"
-fi
-
 # Pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
@@ -95,6 +90,18 @@ if command -v pyenv >/dev/null 2>&1; then
     alias chpy='pyenv global'
     alias chlpy='pyenv local'
     alias chgpy='pyenv global'
+fi
+
+# Rust env
+if command -v cargo > /dev/null 2>&1; then
+    export PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+# Golang env
+if command -v go >/dev/null 2>&1; then
+    export GOPATH="$HOME/src/Golang"
+    export PATH="$GOPATH/bin:$PATH"
+    export GOPROXY="https://goproxy.cn"
 fi
 
 # Flutter

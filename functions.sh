@@ -1,5 +1,5 @@
 # virtual activate
-wk() {
+function wk() {
     if [[ -f "$1/.venv/bin/activate" ]]; then
         source $1/.venv/bin/activate
     elif [[ -f "$1/bin/activate" ]]; then
@@ -17,7 +17,7 @@ wk() {
 
 
 # Proxy
-proxy() {
+function proxy() {
     if [ -z "$ALL_PROXY" ]; then
         if [[ $1 == "-s" ]]; then
             export ALL_PROXY="socks5://127.0.0.1:1086"
@@ -33,7 +33,7 @@ proxy() {
 
 
 # fix brew include files
-fixBrewInclude() {
+function fixBrewInclude() {
     cd $BREWHOME/include
     for dir in `find -L ../opt -name include`
     do
@@ -51,7 +51,7 @@ fixBrewInclude() {
 
 
 # kill tmux's session
-tkill() {
+function tkill() {
     if [[ "$1" == "-a" ]]; then
         tmux kill-session -a
     else

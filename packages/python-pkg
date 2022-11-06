@@ -12,8 +12,8 @@ gunicorn
 celery
 
 # Async
-aiohttp
-gevent
+# aiohttp
+# gevent
 pulsar
 twisted
 uvloop
@@ -30,6 +30,8 @@ scrapy
 pycodestyle
 flake8
 pylint
+autopep8
+mypy
 
 # Data
 redis
@@ -37,11 +39,11 @@ pymysql
 peewee
 
 # Machine Learning
-numpy
-pandas
-scipy
-matplotlib
-seaborn
+# numpy
+# pandas
+# scipy
+# matplotlib
+# seaborn
 
 # Utility
 mistune
@@ -51,3 +53,4 @@ pillow
 pysocks
 pycryptodome
 mycli
+fastcopy

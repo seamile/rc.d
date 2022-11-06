@@ -10,11 +10,12 @@ if [ -d $HOME/.local/bin ]; then
 fi
 
 # Custom alias
-alias l='ls -Clho'
+alias l='ls -ClhoF'
 alias li='ls -Clhoi'
 alias ll='ls -ClhF'
 alias la='ls -A'
 alias lla='ls -ClhFA'
+alias rm='rm -v'
 alias cp='cp -nv'
 alias mv='mv -nv'
 alias rs='rsync -crvzpHP --exclude={.git,.venv,.DS_Store,__pycache__,.vscode,.mypy_cache}'
@@ -81,7 +82,7 @@ fi
 
 # Pyenv
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH"
 if command -v pyenv >/dev/null 2>&1; then
     # eval "$(pyenv init -)";
     # eval "$(pyenv virtualenv-init -)"

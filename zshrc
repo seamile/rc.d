@@ -4,7 +4,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster-adv"
+ZSH_THEME="lambda-zen"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -62,16 +62,12 @@ export DISABLE_MAGIC_FUNCTIONS=true
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     compleat
-    golang
-    docker
     pip
+    rust
+    docker
+    golang
     flutter
 )
-
-# source zshrc.local
-if [ -f "$HOME/.zshrc.local" ]; then
-    source $HOME/.zshrc.local
-fi
 
 source $ZSH/oh-my-zsh.sh
 
@@ -88,4 +84,9 @@ fi
 # source functions.sh
 if [ -f "$HOME/.rc.d/functions.sh" ]; then
     source $HOME/.rc.d/functions.sh
+fi
+
+# source zshrc.local
+if [ -f "$HOME/.zshrc.local" ]; then
+    source $HOME/.zshrc.local
 fi

@@ -5,11 +5,11 @@ CURRENT_DIR=$PWD
 RC_DIR="$HOME/.rc.d"
 LOCAL_BIN="$HOME/.local/bin"
 
-PYTHON_VERSION='3.8.3'
+PYTHON_VERSION='3.11.0'
 BREW_URL='https://raw.githubusercontent.com/Homebrew/install/master/install'
-OH_MY_ZSH_URL='https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh'
+OH_MY_ZSH_URL='https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh'
 POWERLINE_FONTS_URL='https://github.com/powerline/fonts.git'
-PYENV_URL='https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer'
+PYENV_URL='https://pyenv.run'
 RC_URL='https://github.com/seamile/rc.d.git'
 UTILS_URL='https://github.com/seamile/utils.git'
 
@@ -118,7 +118,7 @@ function install_pyenv() {
     echo "exec: install_pyenv"
 
     if [ ! -d $HOME/.pyenv ]; then
-        curl -L $PYENV_URL | bash
+        curl $PYENV_URL | bash
         export PATH="$HOME/.pyenv/bin:$PATH"
         eval "$(pyenv init -)"
         eval "$(pyenv virtualenv-init -)"

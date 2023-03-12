@@ -2,22 +2,23 @@ baidunetdisk
 balenaetcher
 blender
 docker
-edex-ui
-google-chrome
+# edex-ui
+# google-chrome
 iina
 manico
+mark-text
+microsoft-edge
 mongodb
 motrix
 mounty
 obs
 postman
-shadowsocksx-ng
+# shadowsocksx-ng
 steam
 sublime-text
 tencent-lemon
-texmacs
+# texmacs
 thunder
-typora
-virtualbox
+# virtualbox
 visual-studio-code
-vnc-server
+# vnc-server

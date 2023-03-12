@@ -14,7 +14,7 @@ celery
 # Async
 # aiohttp
 # gevent
-pulsar
+# pulsar
 twisted
 uvloop
 
@@ -36,7 +36,9 @@ mypy
 # Data
 redis
 pymysql
+psycopg2
 peewee
+mycli
 
 # Machine Learning
 # numpy
@@ -48,9 +50,7 @@ peewee
 # Utility
 mistune
 paramiko
-pexpect
 pillow
 pysocks
 pycryptodome
-mycli
 fastcopy

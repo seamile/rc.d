@@ -5,7 +5,7 @@ CURRENT_DIR=$PWD
 RC_DIR="$HOME/.rc.d"
 LOCAL_BIN="$HOME/.local/bin"
 
-PYTHON_VERSION='3.11.0'
+PYTHON_VERSION='3.11.2'
 BREW_URL='https://raw.githubusercontent.com/Homebrew/install/master/install'
 OH_MY_ZSH_URL='https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh'
 POWERLINE_FONTS_URL='https://github.com/powerline/fonts.git'

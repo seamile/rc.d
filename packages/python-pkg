@@ -53,4 +53,8 @@ paramiko
 pillow
 pysocks
 pycryptodome
+
+# My packages
+jsonfmt
+similar-search
 fastcopy

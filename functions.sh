@@ -1,18 +1,28 @@
+# get the relative path to current dir
+function relpath() {
+    realpath --relative-to='.' $1
+}
+
+
 # virtual activate
 function wk() {
-    if [[ -f "$1/.venv/bin/activate" ]]; then
-        source $1/.venv/bin/activate
-    elif [[ -f "$1/bin/activate" ]]; then
-        source $1/bin/activate
-    elif [[ -f "$1/activate" ]]; then
-        source $1/activate
-    elif [[ -f "$1" ]]; then
-        source $1
-    elif [[ -f ".venv/bin/activate" ]]; then
-        source .venv/bin/activate
+    if [[ $# == 0 ]]; then
+        dest="."
+    elif [ -d $1 ]; then
+        dest="$1"
     else
-        echo 'Venv: Cannot find the activate file.'
+        printf "$1 is not a directory.\n"
+        return 1
     fi
+
+    for actv in $(find $dest -depth -4 -type f -name activate)
+    do
+        if source $actv; then
+            echo -e "loading \033[35m$(dirname $(dirname $actv))\033[0m"
+            return
+        fi
+    done
+    echo 'Venv: Cannot find the activate file.'
 }
 
 

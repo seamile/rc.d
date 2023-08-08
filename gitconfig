@@ -3,16 +3,17 @@
     email = lanhuermao@gmail.com
 [alias]
     ci = commit
+    cls = remote prune origin
     co = checkout
     df = difftool
     lg = log --stat --graph
     mg = merge --no-commit --squash
-    st = status
     sl = stash list
-    sv = stash save
     sp = stash pop
+    st = status
+    sv = stash save
+    sw = switch
     up = pull
-    cls = remote prune origin
 [color]
     ui = true
 [diff]

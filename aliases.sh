@@ -18,7 +18,7 @@ alias lla='ls -ClhFA'
 alias rm='rm -v'
 alias cp='cp -nv'
 alias mv='mv -nv'
-alias rs='rsync -crvzpHP --exclude={.git,.venv,.DS_Store,__pycache__,.vscode,.mypy_cache}'
+alias rs='rsync -crvzptHP --exclude={.git,.venv,.DS_Store,__pycache__,.vscode,.mypy_cache}'
 alias httpserver='python -m http.server'
 alias httpserver2='python -m SimpleHTTPServer'
 alias grep='grep -I --color=auto --exclude-dir={.git,.venv}'
@@ -54,6 +54,7 @@ alias ipy2='ipython2'
 alias ipy3='ipython3'
 alias venv='python -m venv'
 alias virtualenv='python -m venv'
+alias pipsearch='pip_search'
 alias jpy='jupyter notebook'
 alias pep='pycodestyle --ignore=E501'
 alias rmpyc='find . | grep -wE "py[co]|__pycache__" | xargs rm -rvf'
@@ -63,12 +64,14 @@ if [[ $plugins =~ 'pip' ]]; then
 fi
 
 # Git alias
+alias gad='git add'
 alias gst='git status -sb'
 alias gdf='git difftool'
 alias glg='git log --stat --graph --max-count=10'
 alias gpl='git pull'
 alias gci='git commit'
 alias gco='git checkout'
+alias gsw='git switch'
 alias gmg='git merge --no-commit --squash'
 
 # brew

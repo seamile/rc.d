@@ -47,7 +47,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 HIST_STAMPS="yyyy-mm-dd"
-SAVEHIST=100000
+SAVEHIST=500000
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder

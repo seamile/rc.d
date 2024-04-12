@@ -5,7 +5,7 @@ CURRENT_DIR=$PWD
 RC_DIR="$HOME/.rc.d"
 LOCAL_BIN="$HOME/.local/bin"
 
-PYTHON_VERSION='3.11.2'
+PYTHON_VERSION='3.12.2'
 BREW_URL='https://raw.githubusercontent.com/Homebrew/install/master/install'
 OH_MY_ZSH_URL='https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh'
 POWERLINE_FONTS_URL='https://github.com/powerline/fonts.git'
@@ -135,7 +135,7 @@ function install_python() {
     echo "exec: install_python"
 
     if ! pyenv versions | grep $PYTHON_VERSION > /dev/null; then
-        pyenv install -kv $PYTHON_VERSION
+        env PYTHON_CONFIGURE_OPTS='--enable-optimizations --with-lto' PYTHON_CFLAGS='-march=native -mtune=native' pyenv install -kv $PYTHON_VERSION
     else
         echo "Python v$PYTHON_VERSION is already installed"
     fi

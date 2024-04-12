@@ -43,6 +43,8 @@ if [ `uname` = "Darwin" ]; then
     alias showfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
     alias hidefiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
     alias power="echo Power: $(pmset -g batt|awk 'NR==2{print $3}'|sed 's/;//g')"
+    alias lock="sudo chflags schg"
+    alias unlock="sudo chflags noschg"
 fi
 
 # Python alias

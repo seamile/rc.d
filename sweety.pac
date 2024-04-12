@@ -3229,6 +3229,7 @@ var rules = [
   "meizhong.blog",
   "meizhong.report",
   "meltoday.com",
+  "mem.ai",
   "memehk.com",
   "memorybbs.com",
   "memri.org",

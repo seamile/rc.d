@@ -1,3 +1,22 @@
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+# history settings
+HISTSIZE=10000
+HISTFILESIZE=20000
+HISTCONTROL=ignoredups:ignorespace
+HISTTIMEFORMAT="[%y-%m-%d_%T]  "
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
 # Set PS1
 if [ `id -u` == 0 ]; then
     PS1="\[$(tput bold)\]\[$(tput setaf 1)\]\u\[$(tput sgr0)\]\[$(tput setaf 4)\]@\[$(tput sgr0)\]\[$(tput setaf 5)\]\h \[$(tput sgr0)\]\w\[$(tput bold)\]\[$(tput setaf 1)\] \\$ \[$(tput sgr0)\]"
@@ -16,8 +35,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
-
-export HISTTIMEFORMAT="[%y-%m-%d_%T]  "
 
 # automatic set_window_title when use screen
 if [[ "$TERM" == screen* ]]; then
@@ -46,3 +63,15 @@ fi
 if [ -f "$HOME/.rc.d/functions.sh" ]; then
     source $HOME/.rc.d/functions.sh
 fi
+
+# enable completion features
+if ! shopt -oq posix; then
+    if [ -f /etc/bash_completion ]; then
+        . /etc/bash_completion
+    elif [ -f /usr/local/etc/bash_completion ]; then
+        . /usr/local/etc/bash_completion
+    elif [ -f /opt/homebrew/etc/bash_completion ]; then
+        . /opt/homebrew/etc/bash_completion
+    fi
+fi
+

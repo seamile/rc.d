@@ -5,47 +5,48 @@ jupyter
 # Web
 bottle
 django
+fastapi
 flask
+gunicorn
 sanic
 tornado
-gunicorn
-celery
 
 # Async
-# aiohttp
-# gevent
-# pulsar
+celery
 twisted
 uvloop
 
 # Spider
+beautifulsoup4
 lxml
 pyquery
-beautifulsoup4
 requests
-selenium
 scrapy
+selenium
 
 # CodeStyle
-pycodestyle
-flake8
-pylint
 autopep8
+flake8
 mypy
+pycodestyle
+pydantic
+pylint
 
 # Data
-redis
-pymysql
-psycopg2
-peewee
+asyncpg
 mycli
+peewee
+psycopg2
+pymysql
+redis
+tortoise-orm
 
 # Machine Learning
-# numpy
-# pandas
-# scipy
-# matplotlib
-# seaborn
+numpy
+pandas
+scipy
+matplotlib
+seaborn
 
 # Utility
 mistune

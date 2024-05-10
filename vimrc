@@ -71,7 +71,7 @@ set hlsearch
 highlight Search     cterm=none    ctermfg=black    ctermbg=blue
 
 " vimdiff 高亮
-highlight DiffAdd    cterm=none    ctermfg=black    ctermbg=112
+highlight DiffAdd    cterm=reverse ctermfg=blue     ctermbg=black
 highlight DiffDelete cterm=none    ctermfg=black    ctermbg=235
 highlight DiffChange cterm=none    ctermfg=none     ctermbg=235
 highlight DiffText   cterm=bold    ctermfg=white    ctermbg=124

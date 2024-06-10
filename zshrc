@@ -68,6 +68,7 @@ plugins=(
     flutter
 )
 
+zstyle ':omz:alpha:lib:git' async-prompt no
 source $ZSH/oh-my-zsh.sh
 
 # User configuration

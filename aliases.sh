@@ -28,7 +28,7 @@ alias less='less -N'
 alias aria='aria2c -c -x 16 --file-allocation=none'
 alias axel='axel -n 30'
 alias myip='curl -Ls http://seamile.cn/myip'
-alias ping='ping -i 0.2 -c 30'
+alias ping='ping -i 0.2 -c 10'
 alias ip4="ifconfig | grep -w inet | awk '{print \$2}'| sort"
 alias ip6="ifconfig | grep -w inet6 | awk '{print \$2}'| sort"
 alias tailf='tail -F'
@@ -86,16 +86,35 @@ if command -v brew >/dev/null 2>&1; then
 fi
 
 # Pyenv
+# eval "$(pyenv init -)";
+# eval "$(pyenv virtualenv-init -)"
+export PYENV_SHELL=`basename $SHELL`
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH"
-if command -v pyenv >/dev/null 2>&1; then
-    # eval "$(pyenv init -)";
-    # eval "$(pyenv virtualenv-init -)"
+if [ -d "$PYENV_ROOT/shims" ]; then
+    export PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH"
+    source "$PYENV_ROOT/completions/pyenv.zsh"
+    # command pyenv rehash 2>/dev/null  # slowly
+
     # pyenv alias
     alias pyv='pyenv versions'
     alias chpy='pyenv global'
     alias chlpy='pyenv local'
     alias chgpy='pyenv global'
+
+    function pyenv() {
+      local command
+      command="${1:-}"
+      if [ "$#" -gt 0 ]; then
+        shift
+      fi
+
+      case "$command" in
+      activate|deactivate|rehash|shell)
+        eval "$(pyenv "sh-$command" "$@")";;
+      *)
+        command pyenv "$command" "$@";;
+      esac
+    }
 fi
 
 # Rust env

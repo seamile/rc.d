@@ -1,61 +1,97 @@
-# Shell
+# AI
+bitsandbytes
+dash
+datasets
+gradio
+huggingface_hub
+keras
+langchain
+openai
+peft
+scikit-learn
+scipy
+tensorflow
+torch
+torchaudio
+torchmetrics
+torchtext
+torchvision
+transformers
+zhipuai
+# Data Analysis
 ipython
 jupyter
-
-# Web
-bottle
-django
-fastapi
-flask
-gunicorn
-sanic
-tornado
-
-# Async
-celery
-twisted
-uvloop
-
-# Spider
-beautifulsoup4
-lxml
-pyquery
-requests
-scrapy
-selenium
-
-# CodeStyle
-autopep8
-flake8
-mypy
-pycodestyle
-pydantic
-pylint
-
-# Data
+matplotlib
+numpy
+openpyxl
+pandas
+python-docx
+python-pptx
+seaborn
+# DB
 asyncpg
 mycli
 peewee
+pgcli
 psycopg2
+pymilvus
 pymysql
 redis
-tortoise-orm
-
-# Machine Learning
-numpy
-pandas
-scipy
-matplotlib
-seaborn
-
-# Utility
-mistune
-paramiko
+tortoise-cli
+tortoise-orm[asyncpg]
+# Spider
+beautifulsoup4
+httpx
+jmespath
+jsonpath-ng
+lxml
+requests
+scrapy
+selenium
+# Web
+django
+fastapi[all]
+flask
+gunicorn
+jinja2
+sanic
+uvicorn
+uvloop
+# Utils
+ip2location
+mkdocs
 pillow
+pip_search
+psutil
+pygments
+pyperclip
 pysocks
-pycryptodome
-
-# My packages
-jsonfmt
-similar-search
+pytest
+pyyaml
+toml
+# PEP
+autopep8
+black
+build
+coverage
+flake8
+isort
+mypy[mypyc]
+poetry
+pycodestyle
+pydantic
+setuptools
+twine
+types-httplib2
+types-jmespath
+types-Pillow
+types-pygments
+types-PyYAML
+types-redis
+types-requests
+types-toml
+wheel
+# My Lib
 fastcopy
+jsonfmt
+pixiv_down

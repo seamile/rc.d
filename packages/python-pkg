@@ -10,7 +10,7 @@ openai
 peft
 scikit-learn
 scipy
-tensorflow
+#tensorflow
 torch
 torchaudio
 torchmetrics

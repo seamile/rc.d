@@ -61,11 +61,10 @@ export DISABLE_MAGIC_FUNCTIONS=true
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     compleat
+    flutter
+    golang
     pip
     rust
-    docker
-    golang
-    flutter
 )
 
 zstyle ':omz:alpha:lib:git' async-prompt no

@@ -179,12 +179,14 @@ function setup_env() {
 
     # link rc files
     cd $HOME
-    ln -sfv .rc.d/gitconfig .gitconfig
-    ln -sfv .rc.d/vimrc .vimrc
-    ln -sfv .rc.d/zshrc .zshrc
-    ln -sfv .rc.d/bashrc .bashrc
-    ln -sfv .rc.d/tmux.conf .tmux.conf
-    ln -sfv .rc.d/myclirc .myclirc
+    ln -sfv $HOME/.rc.d/gitconfig .gitconfig
+    ln -sfv $HOME/.rc.d/vimrc .vimrc
+    ln -sfv $HOME/.rc.d/zshrc .zshrc
+    ln -sfv $HOME/.rc.d/bashrc .bashrc
+    ln -sfv $HOME/.rc.d/tmux.conf .tmux.conf
+    ln -sfv $HOME/.rc.d/dbcli/myclirc .myclirc
+    mkdir -p $HOME/.config/pgcli
+    ln -sfv $HOME/.rc.d/dbcli/pgclirc .config/pgcli/config
 
     # link aria2
     mkdir -p $HOME/.aria2

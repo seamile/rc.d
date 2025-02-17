@@ -15,7 +15,7 @@ function wk() {
         return 1
     fi
 
-    for actv in $(find $dest -depth -4 -type f -name activate)
+    for actv in $(find $dest -maxdepth 4 -type f -name activate)
     do
         if source $actv; then
             echo -e "loading \033[35m$(dirname $(dirname $actv))\033[0m"

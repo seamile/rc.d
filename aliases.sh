@@ -18,7 +18,8 @@ alias lla='ls -ClhFA'
 alias rm='rm -v'
 alias cp='cp -nv'
 alias mv='mv -nv'
-alias rs='rsync -crvzptHP --exclude={.venv,.DS_Store,__pycache__,.vscode,.mypy_cache}'
+alias ln='ln -v'
+alias rs='rsync -crvzptHP --exclude={.git,.venv,.DS_Store,__pycache__,.vscode,.mypy_cache}'
 alias grep='grep -I --color=auto --exclude-dir={.git,.venv}'
 alias psgrep='ps ax|grep -v grep|grep'
 alias tree='tree -N -C --dirsfirst'
@@ -26,7 +27,7 @@ alias less='less -N'
 alias aria='aria2c -c -x 16 --file-allocation=none'
 alias axel='axel -n 30'
 alias myip='curl -Ls http://seamile.cn/myip'
-alias ping='ping -i 0.2 -c 10'
+alias ping='ping -i 0.2 -c 50'
 alias ip4="ifconfig | grep -w inet | awk '{print \$2}'| sort"
 alias ip6="ifconfig | grep -w inet6 | awk '{print \$2}'| sort"
 alias tailf='tail -F'
@@ -61,9 +62,12 @@ alias jpy='jupyter notebook'
 alias pep='pycodestyle --ignore=E501'
 alias rmpyc='find . | grep -wE "py[co]|__pycache__" | xargs rm -rvf'
 alias pygrep='grep --include="*.py"'
-if [[ $plugins =~ 'pip' ]]; then
-    unalias pip
-fi
+# if [[ $plugins =~ 'pip' ]]; then
+#     unalias pip
+# fi
+alias upip='uv pip'
+alias uvenv='uv venv'
+alias upy='uv python'
 
 # Git alias
 alias gad='git add'

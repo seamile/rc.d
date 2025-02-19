@@ -29,13 +29,13 @@ function wk() {
 # Proxy
 function proxy() {
     if [ -z "$ALL_PROXY" ]; then
-        if [[ $1 == "-s" ]]; then
-            export ALL_PROXY="socks5://127.0.0.1:1086"
-        else
-            export ALL_PROXY="http://127.0.0.1:1087"
-        fi
+        export HTTP_PROXY="socks5://127.0.0.1:1086"
+        export HTTPS_PROXY="socks5://127.0.0.1:1086"
+        export ALL_PROXY="socks5://127.0.0.1:1086"
         printf "Proxy on: $ALL_PROXY\n";
     else
+        unset HTTP_PROXY;
+        unset HTTPS_PROXY;
         unset ALL_PROXY;
         printf 'Proxy off\n';
     fi

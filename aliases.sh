@@ -1,4 +1,4 @@
-export GREP_COLOR='1;31'
+export GREP_COLORS='mt=1;31'
 export LC_ALL="zh_CN.UTF-8"
 
 if [ `uname` = "Darwin" ]; then
@@ -27,7 +27,7 @@ alias less='less -N'
 alias aria='aria2c -c -x 16 --file-allocation=none'
 alias axel='axel -n 30'
 alias myip='curl -Ls http://seamile.cn/myip'
-alias ping='ping -i 0.2 -c 50'
+alias ping='ping -q -i 0.05 -c 100'
 alias ip4="ifconfig | grep -w inet | awk '{print \$2}'| sort"
 alias ip6="ifconfig | grep -w inet6 | awk '{print \$2}'| sort"
 alias tailf='tail -F'

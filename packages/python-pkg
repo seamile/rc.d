@@ -17,9 +17,7 @@ torchmetrics
 torchtext
 torchvision
 transformers
-zhipuai
 # Data Analysis
-ipython
 jupyter
 matplotlib
 numpy
@@ -59,6 +57,7 @@ uvicorn
 uvloop
 # Utils
 ip2location
+ipython
 mkdocs
 pillow
 pip_search

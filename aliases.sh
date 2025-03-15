@@ -1,13 +1,11 @@
 export GREP_COLORS='mt=1;31'
 export LC_ALL="zh_CN.UTF-8"
+export LESS='-NRF'
+export LESSOPEN='| pygmentize -g -O style=native %s'
 
-if [ `uname` = "Darwin" ]; then
-    export PATH="/usr/local/sbin:$PATH"
-fi
-
-if [ -d $HOME/.local/bin ]; then
-    export PATH="$HOME/.local/bin:$PATH"
-fi
+[[ ! ":${PATH}:" =~ "/usr/local/sbin" ]] && export PATH="/usr/local/sbin:$PATH"
+[[ ! ":${PATH}:" =~ "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
+[[ ! ":${PATH}:" =~ "$HOME/.local/utils" ]] && export PATH="$HOME/.local/utils:$PATH"
 
 # Custom alias
 alias l='ls -ClhoF'
@@ -23,11 +21,11 @@ alias rs='rsync -crvzptHP --exclude={.git,.venv,.DS_Store,__pycache__,.vscode,.m
 alias grep='grep -I --color=auto --exclude-dir={.git,.venv}'
 alias psgrep='ps ax|grep -v grep|grep'
 alias tree='tree -N -C --dirsfirst'
-alias less='less -N'
+# alias less='less -N'
 alias aria='aria2c -c -x 16 --file-allocation=none'
 alias axel='axel -n 30'
 alias myip='curl -Ls http://seamile.cn/myip'
-alias ping='ping -q -i 0.05 -c 100'
+alias ping='ping -i 0.05 -c 100'
 alias ip4="ifconfig | grep -w inet | awk '{print \$2}'| sort"
 alias ip6="ifconfig | grep -w inet6 | awk '{print \$2}'| sort"
 alias tailf='tail -F'
@@ -62,9 +60,6 @@ alias jpy='jupyter notebook'
 alias pep='pycodestyle --ignore=E501'
 alias rmpyc='find . | grep -wE "py[co]|__pycache__" | xargs rm -rvf'
 alias pygrep='grep --include="*.py"'
-# if [[ $plugins =~ 'pip' ]]; then
-#     unalias pip
-# fi
 alias upip='uv pip'
 alias uvenv='uv venv'
 alias upy='uv python'
@@ -122,7 +117,7 @@ if [ -d "$PYENV_ROOT/shims" ]; then
 fi
 
 # Rust env
-if command -v cargo > /dev/null 2>&1; then
+if [[ -d $HOME/.cargo  && ! ":${PATH}:" =~ "$HOME/.cargo/bin" ]]; then
     export PATH="$HOME/.cargo/bin:$PATH"
 fi
 

@@ -79,6 +79,7 @@ plugins=(
     golang
     pip
     rust
+    uv
 )
 
 source $ZSH/oh-my-zsh.sh

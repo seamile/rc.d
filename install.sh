@@ -160,15 +160,8 @@ function install_python_pkg() {
 
 function setup_utils() {
     echo "exec: setup_utils"
-
     mkdir -p $LOCAL_BIN
-    cd $LOCAL_BIN
-    git clone $UTILS_URL utils
-
-    for u_path in `find utils -maxdepth 1 -perm -755 -type f`
-    do
-        ln -sfv $u_path `basename $u_path`
-    done
+    git clone $UTILS_URL $LOCAL_BIN/../utils
 }
 
 

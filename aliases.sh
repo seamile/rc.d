@@ -95,7 +95,6 @@ if [ -d "$PYENV_ROOT/shims" ]; then
     # command pyenv rehash 2>/dev/null  # slowly
 
     # pyenv alias
-    alias pyv='pyenv versions'
     alias chpy='pyenv global'
     alias chlpy='pyenv local'
     alias chgpy='pyenv global'

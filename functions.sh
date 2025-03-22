@@ -55,6 +55,12 @@ function highlight() {
 }
 
 
+# show python version
+function pyv() {
+    highlight "$(python --version)" yellow bold
+    highlight " ($(which python))\n" gray
+}
+
 # get the relative path to current dir
 function relpath() {
     realpath --relative-to='.' $1
@@ -72,11 +78,10 @@ function wk() {
         return 1
     fi
 
-    for actv in $(find $dest -maxdepth 4 -type f -name activate)
-    do
+    for actv in $(find $dest -maxdepth 4 -type f -name activate); do
         if source $actv; then
-            printf "Work on: "
-            highlight "$(dirname $(dirname $actv))\n" yellow
+            printf "Work on "
+            highlight "$(dirname $(dirname $actv))\n" magenta bold
             return
         fi
     done
@@ -103,10 +108,8 @@ function proxy() {
 # fix brew include files
 function fixBrewInclude() {
     cd $BREWHOME/include
-    for dir in `find -L ../opt -name include`
-    do
-        for include in `ls $dir`
-        do
+    for dir in `find -L ../opt -name include`; do
+        for include in `ls $dir`; do
             local SRC="$dir/$include"
             if [ -d $SRC ] || [[ ${SRC##*.} == "h" ]]; then
                 local DST="./$include"
@@ -123,8 +126,7 @@ function tkill() {
     if [[ "$1" == "-a" ]]; then
         tmux kill-session -a
     else
-        for target in $@
-        do
+        for target in $@; do
             if tmux kill-session -t $target; then
                 highlight "Tmux session $target has been killed\n" yellow
             fi

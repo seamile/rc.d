@@ -17,15 +17,16 @@ alias rm='rm -v'
 alias cp='cp -nv'
 alias mv='mv -nv'
 alias ln='ln -v'
-alias rs='rsync -crvzptHP --exclude={.git,.venv,.DS_Store,__pycache__,.vscode,.mypy_cache}'
-alias grep='grep -I --color=auto --exclude-dir={.git,.venv}'
+alias rs="rsync -crvzptHP --exclude='.[A-Za-z0-9._-]*' --exclude={__pycache__,'*.pyc'}"
+alias grep="grep -I --color=auto --exclude-dir='.[A-Za-z0-9._-]*'"
 alias psgrep='ps ax|grep -v grep|grep'
 alias tree='tree -N -C --dirsfirst'
 # alias less='less -N'
 alias aria='aria2c -c -x 16 --file-allocation=none'
 alias axel='axel -n 30'
 alias myip='curl -Ls http://seamile.cn/myip'
-alias ping='ping -i 0.05 -c 100'
+alias ping='ping -i 0.1 -c 30'
+alias ping6='ping6 -i 0.1 -c 30'
 alias ip4="ifconfig | grep -w inet | awk '{print \$2}'| sort"
 alias ip6="ifconfig | grep -w inet6 | awk '{print \$2}'| sort"
 alias tailf='tail -F'

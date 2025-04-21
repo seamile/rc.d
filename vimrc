@@ -81,5 +81,5 @@ auto BufWritePre * sil %s/\s\+$//ge "保存时删除行尾空白
 "映射常用操作
 map [r :! python % <CR>
 map [o :! python -i % <CR>
-map <C-j> :He<CR>
+map <C-j> :He!<CR>
 map <C-l> :Ve!<CR>

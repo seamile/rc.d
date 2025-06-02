@@ -25,8 +25,8 @@ alias tree='tree -N -C --dirsfirst'
 alias aria='aria2c -c -x 16 --file-allocation=none'
 alias axel='axel -n 30'
 alias myip='curl -Ls http://seamile.cn/myip'
-alias ping='ping -i 0.1 -c 30'
-alias ping6='ping6 -i 0.1 -c 30'
+alias ping='ping -i 0.2 -c 10'
+alias ping6='ping6 -i 0.2 -c 10'
 alias ip4="ifconfig | grep -w inet | awk '{print \$2}'| sort"
 alias ip6="ifconfig | grep -w inet6 | awk '{print \$2}'| sort"
 alias tailf='tail -F'
@@ -37,7 +37,6 @@ if [ `uname` = "Darwin" ]; then
     # export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
     # export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
     export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
-    alias rmds='find . -type f -name .DS_Store -delete'
     alias showfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
     alias hidefiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
     alias power="echo Power: $(pmset -g batt|awk 'NR==2{print $3}'|sed 's/;//g')"

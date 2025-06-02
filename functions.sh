@@ -54,6 +54,13 @@ function highlight() {
     printf "${codes}${message}\033[0m"
 }
 
+function rmds() {
+  find "${@:-.}" -type f -name .DS_Store -delete
+}
+
+function preview() {
+  (( $# > 0 )) && qlmanage -p $* &>/dev/null &
+}
 
 # show python version
 function pyv() {
@@ -163,7 +170,11 @@ function tkill() {
 # 进行简单的数学运算
 # Usage: calc '(1 + 2) * 3'
 calc() {
-    result=$(echo $1 | bc -lz)
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        result=$(echo "$*" | bc -lz)
+    else
+        result=$(echo "$*" | bc -l)
+    fi
     if [[ "$result" =~ '\.' ]]; then
         printf "%.2f\n" "$result"
     else

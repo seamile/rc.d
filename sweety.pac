@@ -387,6 +387,7 @@ var rules = [
   "atlassian.com", // From SwitchyOmega
   "atnext.com",
   "audionow.com",
+  "augmentcode.com",
   "authorizeddns.net",
   "authorizeddns.org",
   "authorizeddns.us",

@@ -62,6 +62,12 @@ function preview() {
   (( $# > 0 )) && qlmanage -p $* &>/dev/null &
 }
 
+# ps with cpu and memory
+function pscm() {
+    ps -eo pid,pcpu,rss,args |
+    awk 'NR>1 {printf "%-6s %-5s %7.1f MB  %s\n", $1, $2" %", $3/1024, substr($0, index($0,$4))}'
+}
+
 # show python version
 function pyv() {
     highlight "$(python --version)" yellow bold
@@ -98,15 +104,20 @@ function wk() {
 
 # Proxy
 function proxy() {
-    if [ -z "$ALL_PROXY" ]; then
-        export HTTP_PROXY="socks5://127.0.0.1:1086"
-        export HTTPS_PROXY="socks5://127.0.0.1:1086"
-        export ALL_PROXY="socks5://127.0.0.1:1086"
-        printf "Proxy on: $ALL_PROXY\n";
+    if [ -n "$1" ]; then
+        port=$1
     else
-        unset HTTP_PROXY;
-        unset HTTPS_PROXY;
-        unset ALL_PROXY;
+        port=7890
+    fi
+    if [ -z "$all_proxy" ]; then
+        export http_proxy=http://127.0.0.1:$port
+        export https_proxy=http://127.0.0.1:$port
+        export all_proxy=socks5://127.0.0.1:$port
+        printf "Proxy on: $all_proxy\n";
+    else
+        unset http_proxy;
+        unset https_proxy;
+        unset all_proxy;
         printf 'Proxy off\n';
     fi
 }
@@ -180,6 +191,12 @@ calc() {
     else
         echo $result
     fi
+}
+
+# 查看 macOS 电池电量
+function power() {
+    pwr=$(pmset -g batt|awk 'NR==2{print $3}'|sed 's/;//g')
+    echo "Power: $pwr"
 }
 
 # 检查 MacBook 的电池情况

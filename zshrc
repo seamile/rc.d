@@ -8,7 +8,7 @@ export ZSH=$HOME/.oh-my-zsh
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="mu"
+ZSH_THEME="mu" # set by `omz`
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -59,7 +59,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
 HIST_STAMPS="yyyy-mm-dd"
-SAVEHIST=500000
+SAVEHIST=10000
 
 # Close the async feature of zsh
 # export ZSH_COMPDUMP_ASYNC="false"
@@ -75,9 +75,6 @@ zstyle ':omz:alpha:lib:git' async-prompt no
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     compleat
-    flutter
-    golang
-    pip
     rust
     uv
 )

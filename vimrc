@@ -47,7 +47,7 @@ set noerrorbells        "不显示响铃
 set visualbell          "可视化铃声
 set foldmarker={,}      "缩进符号
 set foldmethod=indent   "缩进作为折叠标识
-set foldlevel=100       "不自动折叠
+set foldlevel=10        "不自动折叠
 set foldopen-=search    "搜索时不打开折叠
 set foldopen-=undo      "撤销时不打开折叠
 set updatecount=0       "不使用交换文件

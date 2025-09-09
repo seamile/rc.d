@@ -1,7 +1,7 @@
 export GREP_COLORS='mt=1;31'
 export LC_ALL="zh_CN.UTF-8"
 export LESS='-NRF'
-export LESSOPEN='| pygmentize -g -O style=native %s'
+# export LESSOPEN='| pygmentize -g -O style=native %s'
 
 [[ ! ":${PATH}:" =~ "/usr/local/sbin" ]] && export PATH="/usr/local/sbin:$PATH"
 [[ ! ":${PATH}:" =~ "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
@@ -19,7 +19,7 @@ alias mv='mv -nv'
 alias ln='ln -v'
 alias rs="rsync -crvzptHP --exclude='.[A-Za-z0-9._-]*' --exclude={__pycache__,'*.pyc'}"
 alias grep="grep -I --color=auto --exclude-dir='.[A-Za-z0-9._-]*'"
-alias psgrep='ps ax|grep -v grep|grep'
+alias psgrep='pscm|grep -v grep|grep'
 alias tree='tree -N -C --dirsfirst'
 # alias less='less -N'
 alias aria='aria2c -c -x 16 --file-allocation=none'
@@ -39,29 +39,19 @@ if [ `uname` = "Darwin" ]; then
     export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
     alias showfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
     alias hidefiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
-    alias power="echo Power: $(pmset -g batt|awk 'NR==2{print $3}'|sed 's/;//g')"
     alias lock="sudo chflags schg"
     alias unlock="sudo chflags noschg"
 fi
 
 # Python alias
 alias py='python'
-alias py2='python2'
-alias py3='python3'
 alias ipy='ipython'
-alias ipy2='ipython2'
-alias ipy3='ipython3'
-alias venv='python -m venv'
-alias virtualenv='python -m venv'
 alias httpserver='python -m http.server'
-alias httpserver2='python -m SimpleHTTPServer'
 alias pip-search='pip_search'
-alias jpy='jupyter notebook'
-alias pep='pycodestyle --ignore=E501'
 alias rmpyc='find . | grep -wE "py[co]|__pycache__" | xargs rm -rvf'
 alias pygrep='grep --include="*.py"'
-alias upip='uv pip'
-alias uvenv='uv venv'
+alias pip='uv pip'
+alias venv='uv venv'
 alias upy='uv python'
 
 # Git alias
@@ -84,37 +74,6 @@ if command -v brew >/dev/null 2>&1; then
     export PKG_CONFIG_PATH="$BREWHOME/lib/pkgconfig"
 fi
 
-# Pyenv
-# eval "$(pyenv init -)";
-# eval "$(pyenv virtualenv-init -)"
-export PYENV_SHELL=`basename $SHELL`
-export PYENV_ROOT="$HOME/.pyenv"
-if [ -d "$PYENV_ROOT/shims" ]; then
-    export PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH"
-    source "$PYENV_ROOT/completions/pyenv.zsh"
-    # command pyenv rehash 2>/dev/null  # slowly
-
-    # pyenv alias
-    alias chpy='pyenv global'
-    alias chlpy='pyenv local'
-    alias chgpy='pyenv global'
-
-    function pyenv() {
-      local command
-      command="${1:-}"
-      if [ "$#" -gt 0 ]; then
-        shift
-      fi
-
-      case "$command" in
-      activate|deactivate|rehash|shell)
-        eval "$(pyenv "sh-$command" "$@")";;
-      *)
-        command pyenv "$command" "$@";;
-      esac
-    }
-fi
-
 # Rust env
 if [[ -d $HOME/.cargo  && ! ":${PATH}:" =~ "$HOME/.cargo/bin" ]]; then
     export PATH="$HOME/.cargo/bin:$PATH"
@@ -135,4 +94,9 @@ if command -v flutter >/dev/null 2>&1; then
     # Flutter CN mirror
     export PUB_HOSTED_URL='https://pub.flutter-io.cn'
     export FLUTTER_STORAGE_BASE_URL='https://storage.flutter-io.cn'
+fi
+
+# Podman
+if command -v podman >/dev/null 2>&1; then
+    alias docker="podman"
 fi

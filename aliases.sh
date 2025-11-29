@@ -1,6 +1,6 @@
 export GREP_COLORS='mt=1;31'
 export LC_ALL="zh_CN.UTF-8"
-export LESS='-NRF'
+# export LESS='-NRF'
 # export LESSOPEN='| pygmentize -g -O style=native %s'
 
 [[ ! ":${PATH}:" =~ "/usr/local/sbin" ]] && export PATH="/usr/local/sbin:$PATH"
@@ -30,6 +30,7 @@ alias ping6='ping6 -i 0.2 -c 10'
 alias ip4="ifconfig | grep -w inet | awk '{print \$2}'| sort"
 alias ip6="ifconfig | grep -w inet6 | awk '{print \$2}'| sort"
 alias tailf='tail -F'
+alias tm='tmux attach || tmux'
 
 # macOS alias
 if [ `uname` = "Darwin" ]; then
@@ -37,6 +38,7 @@ if [ `uname` = "Darwin" ]; then
     # export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
     # export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
     export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
+    export HOMEBREW_NO_INSTALL_CLEANUP=1
     alias showfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
     alias hidefiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
     alias lock="sudo chflags schg"
@@ -99,4 +101,14 @@ fi
 # Podman
 if command -v podman >/dev/null 2>&1; then
     alias docker="podman"
+    alias docker-compose="podman-compose"
+    export PODMAN_COMPOSE_WARNING_LOGS=false
+fi
+
+# pnpm
+if command -v pnpm >/dev/null 2>&1; then
+    export PNPM_HOME="$HOME/.local/share/pnpm"
+    # pnpm config set global-bin-dir $HOME/.local/bin
+    alias npm='pnpm'
+    alias npx='pnpx'
 fi

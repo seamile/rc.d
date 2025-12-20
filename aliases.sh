@@ -106,9 +106,10 @@ if command -v podman >/dev/null 2>&1; then
 fi
 
 # pnpm
-if command -v pnpm >/dev/null 2>&1; then
+if [ -d $HOME/.local/share/pnpm ]; then
     export PNPM_HOME="$HOME/.local/share/pnpm"
-    # pnpm config set global-bin-dir $HOME/.local/bin
+    export PATH="$PNPM_HOME:$PATH"
+    $PNPM_HOME/pnpm config set global-bin-dir $HOME/.local/bin
     alias npm='pnpm'
     alias npx='pnpx'
 fi

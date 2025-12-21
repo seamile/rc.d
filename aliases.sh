@@ -25,7 +25,7 @@ alias tree='tree -N -C --dirsfirst'
 alias aria='aria2c -c -x 16 --file-allocation=none'
 alias axel='axel -n 30'
 alias myip='curl -Ls http://seamile.cn/myip'
-alias ping='ping -i 0.2 -c 10'
+alias ping='pingx -i 0.2 -c 10'
 alias ping6='ping6 -i 0.2 -c 10'
 alias ip4="ifconfig | grep -w inet | awk '{print \$2}'| sort"
 alias ip6="ifconfig | grep -w inet6 | awk '{print \$2}'| sort"
@@ -106,9 +106,10 @@ if command -v podman >/dev/null 2>&1; then
 fi
 
 # pnpm
-if command -v pnpm >/dev/null 2>&1; then
+if [ -d $HOME/.local/share/pnpm ]; then
     export PNPM_HOME="$HOME/.local/share/pnpm"
-    # pnpm config set global-bin-dir $HOME/.local/bin
+    export PATH="$PNPM_HOME:$PATH"
+    $PNPM_HOME/pnpm config set global-bin-dir $HOME/.local/bin
     alias npm='pnpm'
     alias npx='pnpx'
 fi

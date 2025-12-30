@@ -64,8 +64,12 @@ function preview() {
 
 # ps with cpu and memory
 function pscm() {
-    ps -eo pid,pcpu,rss,args |
-    awk 'NR>1 {printf "%-6s %-5s %7.1f MB  %s\n", $1, $2" %", $3/1024, substr($0, index($0,$4))}'
+    ps -eo pid,pcpu,rss,lstart,args |
+    awk 'NR>1 {
+            line=substr($0, index($0,$4));
+            gsub(/ {2,}/, "  ", line);
+            printf "%7d %5.1f %% %7.1f MB %s\n", $1, $2, $3/1024, line
+        }'
 }
 
 # show python version

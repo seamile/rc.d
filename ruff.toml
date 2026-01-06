@@ -1,0 +1,78 @@
+indent-width = 4
+line-length = 120
+target-version = "py310"
+
+exclude = [
+    "__pycache__",
+    "__pypackages__",
+    "venv",
+    ".venv",
+    ".pyenv",
+    ".eggs",
+    ".git",
+    ".svn",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".ruff_cache",
+    "build",
+    "dist",
+    "migrations",
+    "node_modules",
+    "site-packages",
+    ".pytype",
+    ".tox",
+    ".vscode",
+]
+
+
+[lint]
+select = [
+    "A",
+    "B",
+    "C4",
+    "C90",
+    "E",
+    "F",
+    "FURB",
+    "I",
+    "N",
+    "PERF",
+    "RUF",
+    "S",
+    "UP",
+    "W",
+]
+ignore = [
+    "B008",
+    "D",
+    "E402",
+    "E501",
+    "E731",
+    "Q",
+    "RUF001",
+    "RUF002",
+    "RUF003",
+    "RUF029",
+    "S101",
+    "S311",
+    "S403",
+    "S404",
+    "S602",
+    "S603",
+    "S607",
+]
+
+# Allow fix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+unfixable = []
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[format]
+quote-style = "single"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "lf"
+docstring-code-format = true
+docstring-code-line-length = "dynamic"

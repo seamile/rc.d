@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
 # Path to your Oh My Zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
@@ -23,8 +23,8 @@ ZSH_THEME="emo" # set by `omz`
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-DISABLE_AUTO_UPDATE="true"
+# Uncomment one of the following lines to change the auto-update behavior
+zstyle ':omz:update' mode disabled # Options: auto, reminder, disabled
 
 # Uncomment the following line to change how often to auto-update (in days).
 # zstyle ':omz:update' frequency 13
@@ -59,14 +59,14 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
 HIST_STAMPS="yyyy-mm-dd"
-SAVEHIST=10000
+SAVEHIST=3000
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Close the async feature of zsh
-# export ZSH_COMPDUMP_ASYNC="false"
-# export DISABLE_UNTRACKED_FILES_DIRTY="true"
-# export ZSH_DISABLE_COMPFIX="true"
-# zstyle ':omz:plugins:git' async no
-zstyle ':omz:alpha:lib:git' async-prompt no
+# zstyle ':omz:alpha:lib:git' async-prompt no
+zstyle ':omz:alpha:lib:git' async-prompt force
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
@@ -108,8 +108,6 @@ export LANG="zh_CN.UTF-8"
 # - $ZSH_CUSTOM/aliases.zsh
 # - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
-
-autoload -U compinit && compinit
 
 # source aliases.sh
 if [ -f "$HOME/.rc.d/aliases.sh" ]; then

@@ -113,3 +113,10 @@ if [ -d $HOME/.local/share/pnpm ]; then
     alias npm='pnpm'
     alias npx='pnpx'
 fi
+
+# openspec
+if command -v openspec >/dev/null 2>&1; then
+    fpath=("/Users/xu/.oh-my-zsh/custom/completions" $fpath)
+    autoload -Uz compinit
+    compinit
+fi

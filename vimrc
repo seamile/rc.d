@@ -63,7 +63,7 @@ set backspace=2     "退格键可以删除任何东西
 
 " 当前行高亮
 set cursorline
-highlight CursorLine cterm=none    ctermfg=none     ctermbg=232
+highlight CursorLine cterm=none    ctermfg=none     ctermbg=236
 highlight LineNr     cterm=none    ctermfg=gray     ctermbg=none
 
 " 搜索结果高亮

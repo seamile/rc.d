@@ -105,6 +105,15 @@ if command -v podman >/dev/null 2>&1; then
     export PODMAN_COMPOSE_WARNING_LOGS=false
 fi
 
+# Bun
+if [ -d $HOME/.bun/bin ]; then
+    # bun
+    export BUN_INSTALL="$HOME/.bun"
+    export PATH="$BUN_INSTALL/bin:$PATH"
+    # bun completions
+    [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+fi
+
 # pnpm
 if [ -d $HOME/.local/share/pnpm ]; then
     export PNPM_HOME="$HOME/.local/share/pnpm"
@@ -116,7 +125,7 @@ fi
 
 # openspec
 if command -v openspec >/dev/null 2>&1; then
-    fpath=("/Users/xu/.oh-my-zsh/custom/completions" $fpath)
+    fpath=("$HOME/.oh-my-zsh/custom/completions" $fpath)
     autoload -Uz compinit
     compinit
 fi

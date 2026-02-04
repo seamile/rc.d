@@ -34,7 +34,6 @@ set t_Co=256
 set background=dark     "背景色
 set nu                  "显示行号
 set nocompatible        "非兼容模式
-set mouse=nv            "开启鼠标
 set ruler               "在左下角显示当前文件所在行
 set report=0            "显示修改次数
 set nobackup            "无备份

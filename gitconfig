@@ -8,12 +8,8 @@
     df = difftool
     lg = log --stat --graph
     mg = merge --no-commit --squash
-    sl = stash list
-    sp = stash pop
     st = status
-    sv = stash save
     sw = switch
-    up = pull
 [color]
     ui = true
 [diff]

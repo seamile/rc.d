@@ -32,7 +32,7 @@ endif
 color default
 set t_Co=256
 set background=dark     "背景色
-set nu
+set nu                  "显示行号
 set nocompatible        "非兼容模式
 set ruler               "在左下角显示当前文件所在行
 set report=0            "显示修改次数
@@ -63,7 +63,7 @@ set backspace=2     "退格键可以删除任何东西
 
 " 当前行高亮
 set cursorline
-highlight CursorLine cterm=none    ctermfg=none     ctermbg=232
+highlight CursorLine cterm=none    ctermfg=none     ctermbg=236
 highlight LineNr     cterm=none    ctermfg=gray     ctermbg=none
 
 " 搜索结果高亮

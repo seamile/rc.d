@@ -146,7 +146,7 @@ function fixBrewInclude() {
 # kill tmux's session
 function tkill() {
     if [[ "$1" == "-a" ]]; then
-        tmux kill-session -a
+        tmux kill-server
     else
         for target in $@; do
             if tmux kill-session -t $target; then

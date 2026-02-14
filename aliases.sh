@@ -104,6 +104,13 @@ if command -v podman >/dev/null 2>&1; then
     export PODMAN_COMPOSE_WARNING_LOGS=false
 fi
 
+# Nvm
+if [ -d $HOME/.nvm ]; then
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+fi
+
 # Bun
 if [ -d $HOME/.bun/bin ]; then
     # bun

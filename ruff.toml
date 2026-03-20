@@ -60,6 +60,7 @@ ignore = [
     "S602",
     "S603",
     "S607",
+    "S608",
 ]
 
 # Allow fix for all enabled rules (when `--fix`) is provided.

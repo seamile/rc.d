@@ -18,7 +18,7 @@ alias cp='cp -nv'
 alias mv='mv -nv'
 alias ln='ln -v'
 alias rs="rsync -crvzptHP --exclude='.[A-Za-z0-9._-]*' --exclude={__pycache__,'*.pyc'}"
-alias grep="grep -I --color=auto --exclude-dir='.[A-Za-z0-9._-]*'"
+alias grep="grep -I --color=auto --exclude-dir='.[A-Za-z0-9._-]*' --exclude-dir=node_modules --exclude-dir=.venv"
 alias psgrep='pscm|grep -v grep|grep'
 alias tree='tree -N -C --dirsfirst'
 # alias less='less -N'
@@ -30,6 +30,7 @@ alias ip4="ifconfig | grep -w inet | awk '{print \$2}'| sort"
 alias ip6="ifconfig | grep -w inet6 | awk '{print \$2}'| sort"
 alias tailf='tail -F'
 alias tm='tmux attach || tmux'
+alias yz='yazi'
 
 # macOS alias
 if [ `uname` = "Darwin" ]; then
@@ -117,7 +118,7 @@ if [ -d $HOME/.bun/bin ]; then
     export BUN_INSTALL="$HOME/.bun"
     export PATH="$BUN_INSTALL/bin:$PATH"
     # bun completions
-    [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+    [[ "$0" == *zsh && -s "$HOME/.bun/_bun" ]] && source "$HOME/.bun/_bun"
 fi
 
 # pnpm
@@ -130,7 +131,7 @@ if [ -d $HOME/.local/share/pnpm ]; then
 fi
 
 # openspec
-if command -v openspec >/dev/null 2>&1; then
+if [[ "$0" == *zsh ]] && command -v openspec >/dev/null 2>&1; then
     fpath=("$HOME/.oh-my-zsh/custom/completions" $fpath)
     autoload -Uz compinit
     compinit

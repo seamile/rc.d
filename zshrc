@@ -79,6 +79,8 @@ plugins=(
     uv
 )
 
+unset MAIL
+
 source $ZSH/oh-my-zsh.sh
 MU_USER=false
 MU_HOST=false

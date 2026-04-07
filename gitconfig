@@ -14,6 +14,7 @@
     ui = true
 [diff]
     tool = vimdiff
+    guitool = vscode
 [difftool]
     prompt = false
 [core]

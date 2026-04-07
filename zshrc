@@ -76,13 +76,13 @@ zstyle ':omz:alpha:lib:git' async-prompt force
 plugins=(
     compleat
     rust
+    starship
     uv
 )
 
 unset MAIL
 
 source $ZSH/oh-my-zsh.sh
-eval "$(starship init zsh)"
 MU_USER=false
 MU_HOST=false
 

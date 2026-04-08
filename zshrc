@@ -76,15 +76,18 @@ zstyle ':omz:alpha:lib:git' async-prompt force
 plugins=(
     compleat
     rust
-    starship
     uv
 )
 
 unset MAIL
 
+# Ignore oh-my-zsh theme when starship installed
+if (( $+commands[starship] )); then
+  unset ZSH_THEME
+  eval "$(starship init zsh)"
+fi
+
 source $ZSH/oh-my-zsh.sh
-MU_USER=false
-MU_HOST=false
 
 # User configuration
 DEFAULT_USER=`whoami`

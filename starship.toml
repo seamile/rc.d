@@ -18,10 +18,10 @@ $php\
 $java\
 $kotlin\
 $haskell\
-[](fg:green bg:sapphire)\
+[](fg:green bg:blue)\
 $git_branch\
 $git_status\
-[](fg:sapphire bg:mauve)\
+[](fg:blue bg:mauve)\
 $git_commit\
 [](fg:mauve)\
 $line_break\
@@ -66,6 +66,7 @@ style_root = "bg:red fg:crust"
 format = '[ $user ]($style)'
 
 [directory]
+home_symbol = ""
 style = "bg:peach fg:crust"
 format = "[ $read_only$path ]($style)"
 truncation_length = 3
@@ -74,28 +75,28 @@ truncate_to_repo = false
 
 [git_branch]
 symbol = ""
-style = "fg:crust bg:sapphire"
+style = "fg:crust bg:blue"
 format = '[ $symbol $branch ]($style)'
 
 [git_status]
-style = "fg:crust bg:sapphire"
+style = "fg:crust bg:blue"
 format = '[($ahead_behind$all_status)]($style)'
 # Red
-conflicted = '[⤭ ](bg:sapphire fg:9)'
-deleted = '[✘ ](bg:sapphire fg:9)'
-diverged = '[ᚶ ](bg:sapphire fg:9)'
+conflicted = '[⤭ ](bg:blue fg:9)'
+deleted = '[✘ ](bg:blue fg:9)'
+diverged = '[ᚶ ](bg:blue fg:9)'
 # Orange
-behind = '[⤓ ](bg:sapphire fg:208)'
-modified = '[⚫︎](bg:sapphire fg:208) '
+behind = '[⤓ ](bg:blue fg:208)'
+modified = '[⚫︎](bg:blue fg:208) '
 # Yellow
-untracked = '[✦ ](bg:sapphire fg:11)'
+untracked = '[✦ ](bg:blue fg:11)'
 # Green
-staged = '[✚ ](bg:sapphire fg:10)'
+staged = '[✚ ](bg:blue fg:10)'
 # Blue
-ahead = '[⤒ ](bg:sapphire fg:27)'
-stashed = '[☑ ](bg:sapphire fg:27)'
+ahead = '[⤒ ](bg:blue fg:27)'
+stashed = '[☑ ](bg:blue fg:27)'
 # Purple
-renamed = '[ ](bg:sapphire fg:5)'
+renamed = '[ ](bg:blue fg:5)'
 
 [git_commit]
 disabled = false
@@ -176,12 +177,12 @@ vimcmd_replace_symbol = '[❮](bold fg:lavender)'
 vimcmd_visual_symbol = '[❮](bold fg:yellow)'
 
 [cmd_duration]
-style = "fg:sky"
-show_milliseconds = true
-format = "[󰔟 $duration ]($style)"
 disabled = false
+style = "fg:peach"
+format = "[󰔟 $duration ]($style)"
+min_time = 3_000  # 3s
+show_milliseconds = false
 show_notifications = false
-min_time_to_notify = 45000
 
 [time]
 disabled = false

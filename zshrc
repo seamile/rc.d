@@ -112,14 +112,14 @@ export LANG="zh_CN.UTF-8"
 # - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
 
-# source aliases.sh
-if [ -f "$HOME/.rc.d/aliases.sh" ]; then
-    source $HOME/.rc.d/aliases.sh
-fi
-
 # source functions.sh
 if [ -f "$HOME/.rc.d/functions.sh" ]; then
     source $HOME/.rc.d/functions.sh
+fi
+
+# source aliases.sh
+if [ -f "$HOME/.rc.d/aliases.sh" ]; then
+    source $HOME/.rc.d/aliases.sh
 fi
 
 # source zshrc.local

@@ -21,15 +21,15 @@ $haskell\
 [](fg:green bg:sapphire)\
 $git_branch\
 $git_status\
-[](fg:sapphire bg:lavender)\
-$time\
-[ ](fg:lavender)\
+[](fg:sapphire bg:mauve)\
+$git_commit\
+[](fg:mauve)\
 $line_break\
 $character"""
 
 right_format = """
 $cmd_duration\
-$git_commit"""
+$time"""
 
 palette = 'catppuccin_mocha'
 
@@ -70,6 +70,7 @@ style = "bg:peach fg:crust"
 format = "[ $read_only$path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
+truncate_to_repo = false
 
 [git_branch]
 symbol = ""
@@ -98,11 +99,12 @@ renamed = '[ ](bg:sapphire fg:5)'
 
 [git_commit]
 disabled = false
-commit_hash_length = 7
+commit_hash_length = 6
 only_detached = false
-tag_disabled = true
-style = 'fg:blue'
-format = '[ $hash ]($style) '
+tag_disabled = false
+tag_symbol = ' '
+style = "bg:mauve fg:crust"
+format = '[ ($tag ) $hash ]($style)'
 
 [nodejs]
 symbol = ""
@@ -161,12 +163,6 @@ style = "fg:crust bg:yellow"
 format = '[$symbol$environment ]($style)'
 ignore_base = false
 
-[time]
-disabled = false
-time_format = "%R"
-style = "bg:lavender fg:crust"
-format = '[  $time ]($style)'
-
 [line_break]
 disabled = false
 
@@ -180,13 +176,18 @@ vimcmd_replace_symbol = '[❮](bold fg:lavender)'
 vimcmd_visual_symbol = '[❮](bold fg:yellow)'
 
 [cmd_duration]
-style = "fg:flamingo"
+style = "fg:sky"
 show_milliseconds = true
 format = "[󰔟 $duration ]($style)"
 disabled = false
 show_notifications = false
 min_time_to_notify = 45000
 
+[time]
+disabled = false
+time_format = "%T"
+style = 'fg:blue'
+format = '[ $time]($style)'
 
 [palettes.catppuccin_latte]
 rosewater = "#dc8a78"

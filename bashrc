@@ -54,14 +54,14 @@ if [ `uname` = "Darwin" ]; then
     alias ls='ls -G'
 fi
 
-# source aliases.sh
-if [ -f "$HOME/.rc.d/aliases.sh" ]; then
-    source $HOME/.rc.d/aliases.sh
-fi
-
 # source functions.sh
 if [ -f "$HOME/.rc.d/functions.sh" ]; then
     source $HOME/.rc.d/functions.sh
+fi
+
+# source aliases.sh
+if [ -f "$HOME/.rc.d/aliases.sh" ]; then
+    source $HOME/.rc.d/aliases.sh
 fi
 
 # enable completion features

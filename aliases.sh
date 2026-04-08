@@ -68,7 +68,7 @@ alias gsw='git switch'
 alias gmg='git merge --no-commit --squash'
 
 # brew
-if command -v brew >/dev/null 2>&1; then
+if has_cmd brew; then
     # BREWHOME=`brew --prefix`
     BREWHOME="/usr/local"
     export LDFLAGS="-L$BREWHOME/lib"
@@ -82,14 +82,14 @@ if [[ -d $HOME/.cargo  && ! ":${PATH}:" =~ "$HOME/.cargo/bin" ]]; then
 fi
 
 # Golang env
-if command -v go >/dev/null 2>&1; then
+if has_cmd go; then
     export GOPATH="$HOME/src/Golang"
     export PATH="$GOPATH/bin:$PATH"
     export GOPROXY="https://goproxy.cn"
 fi
 
 # Flutter
-if command -v flutter >/dev/null 2>&1; then
+if has_cmd flutter; then
     # Flutter src dir
     export FLUTTER_ROOT="$HOME/.local/flutter"
     export FLUTTER_SRC="$FLUTTER_ROOT/packages/flutter/lib/src"
@@ -99,7 +99,7 @@ if command -v flutter >/dev/null 2>&1; then
 fi
 
 # Podman
-if command -v podman >/dev/null 2>&1; then
+if has_cmd podman; then
     alias docker="podman"
     alias docker-compose="podman-compose"
     export PODMAN_COMPOSE_WARNING_LOGS=false
@@ -131,7 +131,7 @@ if [ -d $HOME/.local/share/pnpm ]; then
 fi
 
 # openspec
-if [[ "$0" == *zsh ]] && command -v openspec >/dev/null 2>&1; then
+if [[ "$0" == *zsh ]] && has_cmd openspec; then
     fpath=("$HOME/.oh-my-zsh/custom/completions" $fpath)
     autoload -Uz compinit
     compinit

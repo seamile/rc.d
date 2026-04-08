@@ -1,3 +1,11 @@
+function has_cmd() {
+    if [[ -n "$ZSH_VERSION" ]]; then
+        (( $+commands[$1] ))
+    else
+        command -v "$1" >/dev/null 2>&1
+    fi
+}
+
 function highlight() {
     local message="$1"
     shift

@@ -4,12 +4,12 @@ format = """
 [](red)\
 $os\
 $username\
-[](fg:red bg:peach)\
+[](fg:red bg:peach)\
 $directory\
-[](fg:peach bg:yellow)\
+[](fg:peach bg:yellow)\
 $python\
 $conda\
-[](fg:yellow bg:green)\
+[](fg:yellow bg:green)\
 $c\
 $rust\
 $golang\
@@ -18,10 +18,10 @@ $php\
 $java\
 $kotlin\
 $haskell\
-[](fg:green bg:sapphire)\
+[](fg:green bg:sapphire)\
 $git_branch\
 $git_status\
-[](fg:sapphire bg:lavender)\
+[](fg:sapphire bg:lavender)\
 $time\
 [ ](fg:lavender)\
 $line_break\
@@ -79,16 +79,22 @@ format = '[ $symbol $branch ]($style)'
 [git_status]
 style = "fg:crust bg:sapphire"
 format = '[($ahead_behind$all_status)]($style)'
-conflicted = '[⤭ ](fg:error bg:sapphire)'
-ahead = '⤒ '
-behind = '⤓ '
-diverged = '[ᚶ ](fg:#ff6600 bg:sapphire)'
-untracked = '[✦ ](fg:#ff6600 bg:sapphire)'
-stashed = '☑ '
-modified = '[⚫︎](fg:error bg:sapphire) '
-staged = '✚ '
-renamed = ' '
-deleted = '[✘ ](fg:error bg:sapphire)'
+# Red
+conflicted = '[⤭ ](bg:sapphire fg:9)'
+deleted = '[✘ ](bg:sapphire fg:9)'
+diverged = '[ᚶ ](bg:sapphire fg:9)'
+# Orange
+behind = '[⤓ ](bg:sapphire fg:208)'
+modified = '[⚫︎](bg:sapphire fg:208) '
+# Yellow
+untracked = '[✦ ](bg:sapphire fg:11)'
+# Green
+staged = '[✚ ](bg:sapphire fg:10)'
+# Blue
+ahead = '[⤒ ](bg:sapphire fg:27)'
+stashed = '[☑ ](bg:sapphire fg:27)'
+# Purple
+renamed = '[ ](bg:sapphire fg:5)'
 
 [git_commit]
 disabled = false
@@ -104,7 +110,7 @@ style = "bg:green fg:crust"
 format = '[ $symbol( $version) ]($style)'
 
 [c]
-symbol = " "
+symbol = ""
 style = "bg:green fg:crust"
 format = '[ $symbol( $version) ]($style)'
 
@@ -124,7 +130,7 @@ style = "bg:green fg:crust"
 format = '[ $symbol( $version) ]($style)'
 
 [java]
-symbol = " "
+symbol = ""
 style = "bg:green fg:crust"
 format = '[ $symbol( $version) ]($style)'
 
@@ -150,7 +156,7 @@ style = "bg:sapphire fg:crust"
 format = '[ $symbol( $context) ]($style)'
 
 [conda]
-symbol = "  "
+symbol = " "
 style = "fg:crust bg:yellow"
 format = '[$symbol$environment ]($style)'
 ignore_base = false
@@ -167,7 +173,7 @@ disabled = false
 [character]
 disabled = false
 success_symbol = '[❯](bold fg:green)'
-error_symbol = '[✘ ❯](bold fg:error)'
+error_symbol = '[✘ ❯](bold fg:9)'
 vimcmd_symbol = '[❮](bold fg:green)'
 vimcmd_replace_one_symbol = '[❮](bold fg:lavender)'
 vimcmd_replace_symbol = '[❮](bold fg:lavender)'
@@ -181,63 +187,6 @@ disabled = false
 show_notifications = false
 min_time_to_notify = 45000
 
-[palettes.catppuccin_mocha]
-rosewater = "#f5e0dc"
-flamingo = "#f2cdcd"
-pink = "#f5c2e7"
-mauve = "#cba6f7"
-red = "#f38ba8"
-maroon = "#eba0ac"
-peach = "#fab387"
-yellow = "#f9e2af"
-green = "#a6e3a1"
-teal = "#94e2d5"
-sky = "#89dceb"
-sapphire = "#74c7ec"
-blue = "#89b4fa"
-lavender = "#b4befe"
-text = "#cdd6f4"
-subtext1 = "#bac2de"
-subtext0 = "#a6adc8"
-overlay2 = "#9399b2"
-overlay1 = "#7f849c"
-overlay0 = "#6c7086"
-surface2 = "#585b70"
-surface1 = "#45475a"
-surface0 = "#313244"
-base = "#1e1e2e"
-mantle = "#181825"
-crust = "#11111b"
-error = "#ff3931"
-
-[palettes.catppuccin_frappe]
-rosewater = "#f2d5cf"
-flamingo = "#eebebe"
-pink = "#f4b8e4"
-mauve = "#ca9ee6"
-red = "#e78284"
-maroon = "#ea999c"
-peach = "#ef9f76"
-yellow = "#e5c890"
-green = "#a6d189"
-teal = "#81c8be"
-sky = "#99d1db"
-sapphire = "#85c1dc"
-blue = "#8caaee"
-lavender = "#babbf1"
-text = "#c6d0f5"
-subtext1 = "#b5bfe2"
-subtext0 = "#a5adce"
-overlay2 = "#949cbb"
-overlay1 = "#838ba7"
-overlay0 = "#737994"
-surface2 = "#626880"
-surface1 = "#51576d"
-surface0 = "#414559"
-base = "#303446"
-mantle = "#292c3c"
-crust = "#232634"
-error = "#ff3931"
 
 [palettes.catppuccin_latte]
 rosewater = "#dc8a78"
@@ -266,7 +215,34 @@ surface0 = "#ccd0da"
 base = "#eff1f5"
 mantle = "#e6e9ef"
 crust = "#dce0e8"
-error = "#ff3931"
+
+[palettes.catppuccin_frappe]
+rosewater = "#f2d5cf"
+flamingo = "#eebebe"
+pink = "#f4b8e4"
+mauve = "#ca9ee6"
+red = "#e78284"
+maroon = "#ea999c"
+peach = "#ef9f76"
+yellow = "#e5c890"
+green = "#a6d189"
+teal = "#81c8be"
+sky = "#99d1db"
+sapphire = "#85c1dc"
+blue = "#8caaee"
+lavender = "#babbf1"
+text = "#c6d0f5"
+subtext1 = "#b5bfe2"
+subtext0 = "#a5adce"
+overlay2 = "#949cbb"
+overlay1 = "#838ba7"
+overlay0 = "#737994"
+surface2 = "#626880"
+surface1 = "#51576d"
+surface0 = "#414559"
+base = "#303446"
+mantle = "#292c3c"
+crust = "#232634"
 
 [palettes.catppuccin_macchiato]
 rosewater = "#f4dbd6"
@@ -295,4 +271,31 @@ surface0 = "#363a4f"
 base = "#24273a"
 mantle = "#1e2030"
 crust = "#181926"
-error = "#ff3931"
+
+[palettes.catppuccin_mocha]
+rosewater = "#f5e0dc"
+flamingo = "#f2cdcd"
+pink = "#f5c2e7"
+mauve = "#cba6f7"
+red = "#f38ba8"
+maroon = "#eba0ac"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+teal = "#94e2d5"
+sky = "#89dceb"
+sapphire = "#74c7ec"
+blue = "#89b4fa"
+lavender = "#b4befe"
+text = "#cdd6f4"
+subtext1 = "#bac2de"
+subtext0 = "#a6adc8"
+overlay2 = "#9399b2"
+overlay1 = "#7f849c"
+overlay0 = "#6c7086"
+surface2 = "#585b70"
+surface1 = "#45475a"
+surface0 = "#313244"
+base = "#1e1e2e"
+mantle = "#181825"
+crust = "#11111b"

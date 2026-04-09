@@ -84,16 +84,16 @@ format = '[($ahead_behind$all_status)]($style)'
 # Red
 conflicted = '[⤭ ](bg:blue fg:9)'
 deleted = '[✘ ](bg:blue fg:9)'
-diverged = '[ᚶ ](bg:blue fg:9)'
+diverged = '[⥮ ](bg:blue fg:9)'
 # Orange
 behind = '[⤓ ](bg:blue fg:208)'
 modified = '[⚫︎](bg:blue fg:208) '
 # Yellow
-untracked = '[✦ ](bg:blue fg:11)'
+untracked = '[🟆 ](bg:blue fg:11)'
 # Green
-staged = '[✚ ](bg:blue fg:10)'
+staged = '[🞧 ](bg:blue fg:10)'
+ahead = '[⤒ ](bg:blue fg:10)'
 # Blue
-ahead = '[⤒ ](bg:blue fg:27)'
 stashed = '[☑ ](bg:blue fg:27)'
 # Purple
 renamed = '[ ](bg:blue fg:5)'
@@ -105,7 +105,7 @@ only_detached = false
 tag_disabled = false
 tag_symbol = ' '
 style = "bg:mauve fg:crust"
-format = '[ ($tag ) $hash ]($style)'
+format = '[ ($tag ) $hash ]($style)'
 
 [nodejs]
 symbol = ""
@@ -169,7 +169,7 @@ disabled = false
 
 [character]
 disabled = false
-success_symbol = '[❯](bold fg:green)'
+success_symbol = '[❯❯](bold fg:green)'
 error_symbol = '[✘ ❯](bold fg:9)'
 vimcmd_symbol = '[❮](bold fg:green)'
 vimcmd_replace_one_symbol = '[❮](bold fg:lavender)'

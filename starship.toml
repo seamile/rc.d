@@ -74,7 +74,7 @@ truncation_symbol = "…/"
 truncate_to_repo = false
 
 [git_branch]
-symbol = ""
+symbol = ""
 style = "fg:crust bg:blue"
 format = '[ $symbol $branch ]($style)'
 
@@ -105,7 +105,7 @@ only_detached = false
 tag_disabled = false
 tag_symbol = ' '
 style = "bg:mauve fg:crust"
-format = '[ ($tag ) $hash ]($style)'
+format = '[ ($tag )󰜘 $hash ]($style)'
 
 [nodejs]
 symbol = ""
@@ -169,8 +169,8 @@ disabled = false
 
 [character]
 disabled = false
-success_symbol = '[❯❯](bold fg:green)'
-error_symbol = '[✘ ❯](bold fg:9)'
+success_symbol = '[❯](bold fg:10)'
+error_symbol = '[❯](bold fg:9)'
 vimcmd_symbol = '[❮](bold fg:green)'
 vimcmd_replace_one_symbol = '[❮](bold fg:lavender)'
 vimcmd_replace_symbol = '[❮](bold fg:lavender)'

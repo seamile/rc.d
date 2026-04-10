@@ -1,0 +1,76 @@
+# 通用
+window-theme = dark
+language = zh_CN.UTF-8
+macos-titlebar-style = tabs
+window-new-tab-position = end
+window-show-tab-bar = always
+bell-features = no-system,no-attention,no-border
+focus-follows-mouse = true
+mouse-scroll-multiplier = "precision:5"
+shell-integration-features = title,sudo,ssh-terminfo,ssh-env,no-cursor
+keybind = ctrl+s>r=reload_config
+keybind = ctrl+n=next_tab
+keybind = cmd+r=prompt_tab_title
+
+# 字体
+font-size = 16
+font-family = "SauceCodePro NFM"
+font-family = "PingFang SC"
+font-synthetic-style = true
+font-thicken = true
+font-thicken-strength = 96
+
+
+# 分屏
+keybind = cmd+d=unbind
+keybind = cmd+shift+d=unbind
+keybind = ctrl+s>ctrl+j=new_split:down
+keybind = ctrl+s>ctrl+l=new_split:right
+keybind = ctrl+s>k=goto_split:up
+keybind = ctrl+s>j=goto_split:down
+keybind = ctrl+s>h=goto_split:left
+keybind = ctrl+s>l=goto_split:right
+keybind = ctrl+m=goto_split:next
+keybind = ctrl+s>space=equalize_splits
+keybind = ctrl+s>z=toggle_split_zoom
+split-divider-color = #4280F2
+unfocused-split-fill = #2A2A2A
+unfocused-split-opacity = 0.5
+
+# 光标
+cursor-color = #B1EB4A
+cursor-style = block
+
+# 核心颜色
+bold-is-bright = true
+foreground = #B1EA4A
+background = #000000
+background-opacity = 0.75
+selection-background = #015FFF
+selection-foreground = #ffffff
+
+# ANSI 调色盘
+#  0:  黑,  1:  红
+palette = 0=#333233
+palette = 1=#FF2600
+#  2:  绿,  3:  黄
+palette = 2=#3FFF41
+palette = 3=#FEAB01
+#  4:  蓝,  5:  紫
+palette = 4=#4486FD
+palette = 5=#FE40FF
+#  6:  青,  7:  银
+palette = 6=#00A6B2
+palette = 7=#E0E0E0
+#  8:  灰,  9:亮红
+palette = 8=#666666
+palette = 9=#FF3931
+# 10:亮绿, 11:亮黄
+palette = 10=#A0FE01
+palette = 11=#FFFB26
+# 12:亮蓝, 13:亮紫
+palette = 12=#0396FF
+palette = 13=#FE8BD8
+# 14:亮青, 15:亮白
+palette = 14=#0CD9DC
+palette = 15=#FFFFFF

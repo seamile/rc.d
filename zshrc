@@ -74,15 +74,13 @@ zstyle ':omz:alpha:lib:git' async-prompt force
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    compleat
+    bun
     rust
     uv
 )
 
-unset MAIL
-
 # Ignore oh-my-zsh theme when starship installed
-if (( $+commands[starship] )); then
+if (( $+commands[starship] )) && [[ -z "$TMUX" ]]; then
   unset ZSH_THEME
   eval "$(starship init zsh)"
 fi
@@ -90,7 +88,6 @@ fi
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-DEFAULT_USER=`whoami`
 
 # export MANPATH="/usr/local/man:$MANPATH"
 

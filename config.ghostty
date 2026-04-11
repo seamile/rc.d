@@ -18,8 +18,7 @@ font-family = "SauceCodePro NFM"
 font-family = "PingFang SC"
 font-synthetic-style = true
 font-thicken = true
-font-thicken-strength = 96
-
+font-thicken-strength = 16
 
 # 分屏
 keybind = cmd+d=unbind

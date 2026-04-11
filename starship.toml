@@ -69,7 +69,7 @@ format = '[ $user ]($style)'
 home_symbol = ""
 style = "bg:peach fg:crust"
 format = "[ $read_only$path ]($style)"
-truncation_length = 3
+truncation_length = 2
 truncation_symbol = "…/"
 truncate_to_repo = false
 
@@ -89,9 +89,9 @@ diverged = '[⥮ ](bg:blue fg:9)'
 behind = '[⤓ ](bg:blue fg:208)'
 modified = '[⚫︎](bg:blue fg:208) '
 # Yellow
-untracked = '[🟆 ](bg:blue fg:11)'
+untracked = '[✦ ](bg:blue fg:11)'
 # Green
-staged = '[🞧 ](bg:blue fg:10)'
+staged = '[✚ ](bg:blue fg:10)'
 ahead = '[⤒ ](bg:blue fg:10)'
 # Blue
 stashed = '[☑ ](bg:blue fg:27)'
@@ -107,62 +107,62 @@ tag_symbol = ' '
 style = "bg:mauve fg:crust"
 format = '[ ($tag )󰜘 $hash ]($style)'
 
-[nodejs]
-symbol = ""
-style = "bg:green fg:crust"
-format = '[ $symbol( $version) ]($style)'
-
-[c]
-symbol = ""
-style = "bg:green fg:crust"
-format = '[ $symbol( $version) ]($style)'
-
-[rust]
-symbol = ""
-style = "bg:green fg:crust"
-format = '[ $symbol( $version) ]($style)'
-
-[golang]
-symbol = ""
-style = "bg:green fg:crust"
-format = '[ $symbol( $version) ]($style)'
-
-[php]
-symbol = ""
-style = "bg:green fg:crust"
-format = '[ $symbol( $version) ]($style)'
-
-[java]
-symbol = ""
-style = "bg:green fg:crust"
-format = '[ $symbol( $version) ]($style)'
-
-[kotlin]
-symbol = ""
-style = "bg:green fg:crust"
-format = '[ $symbol( $version) ]($style)'
-
-[haskell]
-symbol = ""
-style = "bg:green fg:crust"
-format = '[ $symbol( $version) ]($style)'
-
 [python]
 symbol = ""
 style = "bg:yellow fg:crust"
 version_format = "${major}.${minor}"
-format = '[ $symbol( \($virtualenv\))( $version) ]($style)'
+format = '[ $symbol (\([$virtualenv](bold $style)\) )($version )]($style)'
+
+[conda]
+symbol = ""
+style = "bg:yellow fg:crust"
+format = '[ $symbol $environment ]($style)'
+ignore_base = false
+
+[c]
+symbol = ""
+style = "bg:green fg:crust"
+format = '[ $symbol ($version )]($style)'
+
+[rust]
+symbol = ""
+style = "bg:green fg:crust"
+format = '[ $symbol ($version )]($style)'
+
+[golang]
+symbol = ""
+style = "bg:green fg:crust"
+format = '[ $symbol ($version )]($style)'
+
+[nodejs]
+symbol = ""
+style = "bg:green fg:crust"
+format = '[ $symbol ($version )]($style)'
+
+[php]
+symbol = ""
+style = "bg:green fg:crust"
+format = '[ $symbol ($version )]($style)'
+
+[java]
+symbol = ""
+style = "bg:green fg:crust"
+format = '[ $symbol ($version )]($style)'
+
+[kotlin]
+symbol = ""
+style = "bg:green fg:crust"
+format = '[ $symbol ($version )]($style)'
+
+[haskell]
+symbol = ""
+style = "bg:green fg:crust"
+format = '[ $symbol ($version )]($style)'
 
 [docker_context]
 symbol = ""
 style = "bg:sapphire fg:crust"
-format = '[ $symbol( $context) ]($style)'
-
-[conda]
-symbol = " "
-style = "fg:crust bg:yellow"
-format = '[$symbol$environment ]($style)'
-ignore_base = false
+format = '[ $symbol ($context )]($style)'
 
 [line_break]
 disabled = false

@@ -20,7 +20,7 @@ alias ln='ln -v'
 alias rs="rsync -crvzptHP --exclude='.[A-Za-z0-9._-]*' --exclude={__pycache__,'*.pyc'}"
 alias grep="grep -I --color=auto --exclude-dir='.[A-Za-z0-9._-]*' --exclude-dir=node_modules --exclude-dir=.venv"
 alias psgrep='pscm|grep -v grep|grep'
-alias tree='tree -N -C --dirsfirst'
+alias tree='tree -N -C --dirsfirst -I "__pycache__|*.pyc|*.pyo|node_modules|dist|build|target|vendor"'
 # alias less='less -N'
 alias aria='aria2c -c -x 16 --file-allocation=none'
 alias axel='axel -n 30'
@@ -135,4 +135,15 @@ if [[ "$0" == *zsh ]] && has_cmd openspec; then
     fpath=("$HOME/.oh-my-zsh/custom/completions" $fpath)
     autoload -Uz compinit
     compinit
+fi
+
+# SoftClear for Ghostty
+if [[ "$TERM_PROGRAM" == "ghostty" ]]; then
+    soft_clear() {
+        printf '\n%.0s' {1..$LINES}  # 把内容推出视野
+        printf '\033[H'               # 光标回左上角（不清屏）
+        zle reset-prompt              # 重绘提示符
+    }
+    zle -N soft_clear
+    bindkey '^L' soft_clear
 fi

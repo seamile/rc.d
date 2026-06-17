@@ -18,7 +18,7 @@ font-family = "SauceCodePro NFM"
 font-family = "PingFang SC"
 font-synthetic-style = true
 font-thicken = true
-font-thicken-strength = 16
+font-thicken-strength = 128
 
 # 分屏
 keybind = cmd+d=unbind
@@ -34,7 +34,7 @@ keybind = ctrl+s>space=equalize_splits
 keybind = ctrl+s>z=toggle_split_zoom
 split-divider-color = #4280F2
 unfocused-split-fill = #2A2A2A
-unfocused-split-opacity = 0.5
+unfocused-split-opacity = 0.65
 
 # 光标
 cursor-color = #B1EB4A

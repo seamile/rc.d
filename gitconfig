@@ -6,8 +6,9 @@
     cls = remote prune origin
     co = checkout
     df = difftool
-    lg = log --stat --graph
-    mg = merge --no-commit --squash
+    lg = log --graph
+    lgg = log --stat --graph
+    ls = log --pretty=format:'%C(blue)%ad  %C(auto)%h  %s %d' --date=format:'%Y-%m-%d %H:%M'
     st = status
     sw = switch
 [color]

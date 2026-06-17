@@ -17,6 +17,7 @@ alias rm='rm -v'
 alias cp='cp -nv'
 alias mv='mv -nv'
 alias ln='ln -v'
+alias cls='clear'
 alias rs="rsync -crvzptHP --exclude='.[A-Za-z0-9._-]*' --exclude={__pycache__,'*.pyc'}"
 alias grep="grep -I --color=auto --exclude-dir='.[A-Za-z0-9._-]*' --exclude-dir=node_modules --exclude-dir=.venv"
 alias psgrep='pscm|grep -v grep|grep'
@@ -26,6 +27,7 @@ alias aria='aria2c -c -x 16 --file-allocation=none'
 alias axel='axel -n 30'
 alias myip='curl -Ls http://seamile.cn/myip'
 alias ping='pingx -i 0.05 -c 10'
+alias sping='/sbin/ping -i 0.05'
 alias ip4="ifconfig | grep -w inet | awk '{print \$2}'| sort"
 alias ip6="ifconfig | grep -w inet6 | awk '{print \$2}'| sort"
 alias tailf='tail -F'
@@ -138,7 +140,7 @@ if [[ "$0" == *zsh ]] && has_cmd openspec; then
 fi
 
 # SoftClear for Ghostty
-if [[ "$TERM_PROGRAM" == "ghostty" ]]; then
+if [[ $0 == *zsh && "$TERM_PROGRAM" == "ghostty" ]]; then
     soft_clear() {
         printf '\n%.0s' {1..$LINES}  # 把内容推出视野
         printf '\033[H'               # 光标回左上角（不清屏）

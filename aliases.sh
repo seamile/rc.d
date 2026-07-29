@@ -33,6 +33,7 @@ alias ip6="ifconfig | grep -w inet6 | awk '{print \$2}'| sort"
 alias tailf='tail -F'
 alias tm='tmux attach || tmux'
 alias yz='yazi'
+alias yt='yt-dlp --extractor-args "youtube:player_client=android" --js-runtimes node'
 
 # macOS alias
 if [ `uname` = "Darwin" ]; then

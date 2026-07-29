@@ -31,6 +31,7 @@ endif
 "color desert
 color default
 set t_Co=256
+set maxmempattern=10000 "执行搜索、替换、语法高亮匹配时正则引擎的内存上限（10MB）
 set background=dark     "背景色
 set nu                  "显示行号
 set nocompatible        "非兼容模式

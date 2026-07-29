@@ -240,3 +240,154 @@ function chk-battery() {
         highlight "❌ 无法获取电池信息，请检查系统！\n" red
     fi
 }
+
+# 水平翻转视频
+function hflip() {
+    local force=false
+    local output=""
+
+    _hflip_usage() {
+        cat <<'EOF'
+Usage: hflip [-f] [-o <dir>] <video_file>...
+
+水平翻转视频（水平镜像）。
+
+参数:
+  -o <dir>    指定输出目录（不影响文件名）。默认: 当前目录
+  -f          覆盖已存在的输出文件，不询问。
+  -h, --help  显示此帮助信息。
+
+ 示例:
+  hflip video.mp4              # 输出到 ./video-hflip.mp4
+  hflip -o ./outdir/ a.mp4     # 输出到 ./outdir/a-hflip.mp4
+  hflip -f video.mp4           # 覆盖已存在文件，不询问
+EOF
+    }
+
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            -f) force=true; shift ;;
+            -o) output="$2"; shift 2 ;;
+            -h|--help) _hflip_usage; return 0 ;;
+            --) shift; break ;;
+            -*) echo "hflip: unknown option '$1'" >&2; _hflip_usage; return 1 ;;
+            *) break ;;
+        esac
+    done
+
+    if [[ $# -eq 0 ]]; then
+        echo "hflip: missing file argument" >&2
+        _hflip_usage
+        return 1
+    fi
+
+    if ! command -v ffmpeg &> /dev/null; then
+        echo "Error: ffmpeg not found. Please install it first." >&2
+        return 1
+    fi
+
+    for file in "$@"; do
+        if [ ! -f "$file" ]; then
+            echo "Warning: '$file' is not a regular file, skipping." >&2
+            continue
+        fi
+
+        local basename=$(basename "$file")
+        local stem="${basename%.*}"
+        local ext="${basename##*.}"
+        if [[ "$basename" == "$ext" ]]; then
+            basename="${stem}-hflip"
+        else
+            basename="${stem}-hflip.${ext}"
+        fi
+
+        local output_file
+
+        if [[ -n "$output" ]]; then
+            mkdir -p "$output" || return 1
+            output_file="$output/$basename"
+        else
+            output_file="./$basename"
+        fi
+
+        if [[ -f "$output_file" && "$force" != true ]]; then
+            echo -n "File '$output_file' already exists. Overwrite? [y/N] "
+            read -r answer
+            [[ "$answer" =~ ^[Yy]$ ]] || continue
+        fi
+
+        echo "Processing: $file -> $output_file"
+        ffmpeg -i "$file" -vf "hflip" -c:a copy -y "$output_file"
+    done
+}
+
+# 根据名称编辑脚本
+function edt-script() {
+    if [[ $# != 1 ]]; then
+        highlight "Usage: edt-script SCRIPT_PATH\n" red
+        return 1
+    fi
+
+    script_path=$(which $1)
+    if [ $? -a -f "$script_path" ]; then
+        ftype=$(file $script_path | grep -oE 'script|text')
+        if [ -n "$ftype" ]; then
+            vim $script_path
+            return 0
+        fi
+    fi
+    highlight "Not script: '$script_path'\n" red
+    return 1
+}
+
+# 自动重试
+function retry() {
+    # 确保别名在非交互模式下也可展开
+    [ -n "$BASH_VERSION" ] && shopt -s expand_aliases 2>/dev/null
+    [ -n "$ZSH_VERSION" ] && setopt aliases 2>/dev/null
+
+    # 定义默认值
+    local errcode=""      # 错误码: 默认重试任何错误码
+    local max_retries=-1  # 重试次数: -1 表示无限重试, 直至状态码为 0
+    local interval=1      # 间隔时间: 默认间隔 1 秒
+    local mode="linear"   # 间隔模式: linear(匀速), add(累加), double(翻倍)
+    local usage="Usage: retry [-e errcode] [-n count] [-i interval] [-m linear|add|double] [-h] -- COMMAND"
+
+    local OPTIND opt
+    while getopts "e:n:i:m:h" opt; do
+        case "$opt" in
+            e) errcode="$OPTARG" ;;
+            n) max_retries="$OPTARG" ;;
+            i) interval="$OPTARG" ;;
+            m) mode="$OPTARG" ;;
+            h) echo $usage && return 0 ;;
+            *) return 1 ;;
+        esac
+    done
+    shift $((OPTIND - 1))
+
+    [ $# -eq 0 ] && echo $usage && return 1
+
+    local count=1 current_interval=$interval
+
+    while true; do
+        eval "$@"
+        local ec=$?
+        [ $ec -eq 0 ] && return 0
+
+        [ -n "$errcode" ] && [ "$ec" -ne "$errcode" ] && return $ec
+        [ $max_retries -gt 0 ] && [ $count -ge $max_retries ] && return $ec
+
+        highlight "\nRetry in $current_interval seconds\n\n" yellow >&2
+        sleep $current_interval
+
+        case "$mode" in
+            linear) ;;
+            add)    current_interval=$((current_interval + interval)) ;;
+            double) current_interval=$((current_interval * 2)) ;;
+            *)      echo "Unknown mode: $mode" >&2; return 1 ;;
+        esac
+
+        count=$((count + 1))
+    done
+}

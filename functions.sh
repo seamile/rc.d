@@ -62,6 +62,8 @@ function highlight() {
     printf "${codes}${message}\033[0m"
 }
 
+alias hl="highlight"
+
 function rmds() {
   find "${@:-.}" -type f -name .DS_Store -delete
 }
@@ -193,15 +195,18 @@ function tkill() {
 # 进行简单的数学运算
 # Usage: calc '(1 + 2) * 3'
 calc() {
-    if [[ "$OSTYPE" == "darwin"* ]]; then
-        result=$(echo "$*" | bc -lz)
+    local result
+
+    if [[ "$OSTYPE" == darwin* ]]; then
+        result=`bc -lz <<< "$*"`
     else
-        result=$(echo "$*" | bc -l)
+        result=`bc -l <<< "$*"`
     fi
-    if [[ "$result" =~ '\.' ]]; then
+
+    if [[ "$result" == *.* ]]; then
         printf "%.2f\n" "$result"
     else
-        echo $result
+        printf "%s\n" "$result"
     fi
 }
 

@@ -1,7 +1,5 @@
 export GREP_COLORS='mt=1;31'
 export LC_ALL="zh_CN.UTF-8"
-# export LESS='-NRF'
-# export LESSOPEN='| pygmentize -g -O style=native %s'
 
 [[ ! ":${PATH}:" =~ "/usr/local/sbin" ]] && export PATH="/usr/local/sbin:$PATH"
 [[ ! ":${PATH}:" =~ "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
@@ -22,7 +20,8 @@ alias rs="rsync -crvzptHP --exclude='.[A-Za-z0-9._-]*' --exclude={__pycache__,'*
 alias grep="grep -I --color=auto --exclude-dir='.[A-Za-z0-9._-]*' --exclude-dir=node_modules --exclude-dir=.venv"
 alias psgrep='pscm|grep -v grep|grep'
 alias tree='tree -N -C --dirsfirst -I "__pycache__|*.pyc|*.pyo|node_modules|dist|build|target|vendor"'
-# alias less='less -N'
+alias less='bat -n --tabs=4'
+alias vv='vim -M'  # 使用 vim 的只读模式浏览文件
 alias aria='aria2c -c -x 16 --file-allocation=none'
 alias axel='axel -n 30'
 alias myip='curl -Ls http://seamile.cn/myip'
@@ -63,6 +62,7 @@ alias upy='uv python'
 alias gad='git add'
 alias gst='git status -sb'
 alias gdf='git difftool'
+alias ggdf='git difftool --gui'
 alias glg='git log --stat --graph --max-count=10'
 alias gpl='git pull'
 alias gci='git commit'

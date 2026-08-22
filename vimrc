@@ -39,8 +39,6 @@ set ruler               "在左下角显示当前文件所在行
 set report=0            "显示修改次数
 set nobackup            "无备份
 set fileencodings=ucs-bom,UTF-8,GBK,BIG5,latin1
-set fileencoding=UTF-8
-set fileformat=unix     "换行使用unix方式
 set wrap
 set linebreak
 set ambiwidth=double
@@ -53,6 +51,11 @@ set foldopen-=search    "搜索时不打开折叠
 set foldopen-=undo      "撤销时不打开折叠
 set updatecount=0       "不使用交换文件
 set magic               "使用正则时，除了$ . * ^以外的元字符都要加反斜线
+
+if &modifiable
+    set fileencoding=UTF-8
+    set fileformat=unix "换行使用unix方式
+endif
 
 "缩进定义
 set shiftwidth=4

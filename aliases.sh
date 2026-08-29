@@ -82,6 +82,9 @@ fi
 # Rust env
 if [[ -d $HOME/.cargo  && ! ":${PATH}:" =~ "$HOME/.cargo/bin" ]]; then
     export PATH="$HOME/.cargo/bin:$PATH"
+    if [[ -x ~/.cargo/bin/sccache ]]; then
+        export RUSTC_WRAPPER=~/.cargo/bin/sccache
+    fi
 fi
 
 # Golang env

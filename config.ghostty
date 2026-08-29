@@ -34,7 +34,7 @@ keybind = ctrl+s>space=equalize_splits
 keybind = ctrl+s>z=toggle_split_zoom
 split-divider-color = #4280F2
 unfocused-split-fill = #2A2A2A
-unfocused-split-opacity = 0.85
+unfocused-split-opacity = 0.875
 
 # 光标
 cursor-color = #B1EB4A

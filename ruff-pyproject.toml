@@ -1,0 +1,78 @@
+[tool.ruff]
+indent-width = 4
+line-length = 120
+target-version = "py312"
+exclude = [
+    "__pycache__",
+    "__pypackages__",
+    ".eggs",
+    ".git",
+    ".mypy_cache",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "build",
+    "dist",
+    "lib/python*",
+    "migrations",
+    "node_modules",
+    "site-packages",
+    "venv",
+]
+
+[tool.ruff.format]
+preview = true
+quote-style = "single"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "lf"
+docstring-code-format = true
+docstring-code-line-length = "dynamic"
+
+[tool.ruff.lint]
+preview = true
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"  # Allow unused variables when underscore-prefixed.
+select = [
+    "A",
+    "B",
+    "C4",
+    "C90",
+    "E",
+    "F",
+    "FURB",
+    "I",
+    "N",
+    "PERF",
+    "RUF",
+    "S",
+    "UP",
+    "W"
+]
+ignore = [
+    "function-call-in-default-argument",
+    "zip-without-explicit-strict",
+    "D",
+    "module-import-not-at-top-of-file",
+    "line-too-long",
+    "lambda-assignment",
+    "Q",
+    "ambiguous-unicode-character-string",
+    "ambiguous-unicode-character-docstring",
+    "ambiguous-unicode-character-comment",
+    "unused-async",
+    "assert",
+    "suspicious-pickle-usage",
+    "suspicious-non-cryptographic-random-usage",
+    "suspicious-pickle-import",
+    "suspicious-subprocess-import",
+    "subprocess-popen-with-shell-equals-true",
+    "subprocess-without-shell-equals-true",
+    "start-process-with-partial-path",
+    "hardcoded-sql-expression"
+]
+fixable = ["ALL"]  # Allow fix for all enabled rules (when `--fix`) is provided.

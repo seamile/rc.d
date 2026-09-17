@@ -25,7 +25,7 @@ alias vv='vim -M'  # 使用 vim 的只读模式浏览文件
 alias aria='aria2c -c -x 16 --file-allocation=none'
 alias axel='axel -n 30'
 alias myip='curl -Ls http://seamile.cn/myip'
-alias ping='pingx -i 0.05 -c 10'
+alias ping='pingx -i 0.1 -c 15'
 alias sping='/sbin/ping -i 0.05'
 alias ip4="ifconfig | grep -w inet | awk '{print \$2}'| sort"
 alias ip6="ifconfig | grep -w inet6 | awk '{print \$2}'| sort"
@@ -68,6 +68,7 @@ alias gpl='git pull'
 alias gci='git commit'
 alias gco='git checkout'
 alias gsw='git switch'
+alias gwt='git worktree'
 alias gmg='git merge --no-commit --squash'
 
 # brew
@@ -77,6 +78,16 @@ if has_cmd brew; then
     export LDFLAGS="-L$BREWHOME/lib"
     export CPPFLAGS="-I$BREWHOME/include"
     export PKG_CONFIG_PATH="$BREWHOME/lib/pkgconfig"
+fi
+
+# LLVM env
+if [ -d "/usr/local/opt/llvm@21" ]; then
+    export CMAKE_PREFIX_PATH="/usr/local/opt/llvm@21"
+    export PATH="$PATH:$CMAKE_PREFIX_PATH/bin"
+    function setup_llvm_env {
+        export LDFLAGS="-L$CMAKE_PREFIX_PATH/lib ${LDFLAGS:-}"
+        export CPPFLAGS="-I$CMAKE_PREFIX_PATH/include ${CPPFLAGS:-}"
+    }
 fi
 
 # Rust env
@@ -114,8 +125,8 @@ fi
 # Nvm
 if [ -d $HOME/.nvm ]; then
     export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+    [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
 fi
 
 # Bun
@@ -125,15 +136,6 @@ if [ -d $HOME/.bun/bin ]; then
     export PATH="$BUN_INSTALL/bin:$PATH"
     # bun completions
     [[ "$0" == *zsh && -s "$HOME/.bun/_bun" ]] && source "$HOME/.bun/_bun"
-fi
-
-# pnpm
-if [ -d $HOME/.local/share/pnpm ]; then
-    export PNPM_HOME="$HOME/.local/share/pnpm"
-    export PATH="$PNPM_HOME:$PATH"
-    $PNPM_HOME/pnpm config set global-bin-dir $HOME/.local/bin
-    alias npm='pnpm'
-    alias npx='pnpx'
 fi
 
 # openspec

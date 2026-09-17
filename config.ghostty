@@ -13,7 +13,7 @@ keybind = ctrl+n=next_tab
 keybind = cmd+r=prompt_tab_title
 
 # 字体
-font-size = 16
+font-size = 15
 font-family = "SauceCodePro NFM"
 font-family = "PingFang SC"
 font-synthetic-style = true

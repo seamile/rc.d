@@ -59,13 +59,13 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
 HIST_STAMPS="yyyy-mm-dd"
-SAVEHIST=3000
+HISTSIZE=30000
+SAVEHIST=10000
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Close the async feature of zsh
-# zstyle ':omz:alpha:lib:git' async-prompt no
+# Custom configs
 zstyle ':omz:alpha:lib:git' async-prompt force
 
 # Which plugins would you like to load?

@@ -67,6 +67,8 @@ SAVEHIST=10000
 
 # Custom configs
 zstyle ':omz:alpha:lib:git' async-prompt force
+# zstyle ':omz:plugins:nvm' lazy yes
+# zstyle ':omz:plugins:nvm' lazy-cmd codex kilo node npm npx
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
@@ -75,6 +77,8 @@ zstyle ':omz:alpha:lib:git' async-prompt force
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     bun
+    fzf
+    # nvm
     rust
     uv
 )

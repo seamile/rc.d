@@ -13,17 +13,17 @@ $python\
 $conda\
 [](fg:yellow bg:green)\
 $c\
-$rust\
+$cpp\
 $golang\
-$nodejs\
-$php\
 $java\
 $kotlin\
-$haskell\
+$nodejs\
+$php\
+$rust\
 [](fg:green bg:blue)\
 $git_branch\
-$git_status\
 ${custom.git_clean}\
+$git_status\
 [](fg:blue bg:mauve)\
 $git_commit\
 [](fg:mauve)\
@@ -121,7 +121,7 @@ format = '[ ($tag )󰜘 $hash ]($style)'
 symbol = ""
 style = "bg:yellow fg:crust"
 version_format = "${major}.${minor}"
-format = '[ $symbol (\([$virtualenv](bold $style)\) )($version )]($style)'
+format = '[ $symbol ($version )([\($virtualenv\)]($style) )]($style)'
 
 [conda]
 symbol = ""
@@ -132,41 +132,49 @@ ignore_base = false
 [c]
 symbol = ""
 style = "bg:green fg:crust"
+version_format = "v${major}"
 format = '[ $symbol ($version )]($style)'
 
-[rust]
-symbol = ""
+[cpp]
+symbol = ""
 style = "bg:green fg:crust"
+version_format = "v${major}"
 format = '[ $symbol ($version )]($style)'
 
 [golang]
 symbol = ""
 style = "bg:green fg:crust"
-format = '[ $symbol ($version )]($style)'
-
-[nodejs]
-symbol = ""
-style = "bg:green fg:crust"
-format = '[ $symbol ($version )]($style)'
-
-[php]
-symbol = ""
-style = "bg:green fg:crust"
+version_format = "${major}.${minor}"
 format = '[ $symbol ($version )]($style)'
 
 [java]
 symbol = ""
 style = "bg:green fg:crust"
+version_format = "${major}.${minor}"
 format = '[ $symbol ($version )]($style)'
 
 [kotlin]
 symbol = ""
 style = "bg:green fg:crust"
+version_format = "${major}.${minor}"
 format = '[ $symbol ($version )]($style)'
 
-[haskell]
-symbol = ""
+[nodejs]
+symbol = ""
 style = "bg:green fg:crust"
+version_format = "${major}.${minor}"
+format = '[ $symbol ($version )]($style)'
+
+[php]
+symbol = ""
+style = "bg:green fg:crust"
+version_format = "v${major}"
+format = '[ $symbol ($version )]($style)'
+
+[rust]
+symbol = ""
+style = "bg:green fg:crust"
+version_format = "${major}.${minor}"
 format = '[ $symbol ($version )]($style)'
 
 [docker_context]

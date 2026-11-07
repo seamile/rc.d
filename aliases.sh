@@ -20,7 +20,7 @@ alias rs="rsync -crvzptHP --exclude='.[A-Za-z0-9._-]*' --exclude={__pycache__,'*
 alias grep="grep -I --color=auto --exclude-dir='.[A-Za-z0-9._-]*' --exclude-dir=node_modules --exclude-dir=.venv"
 alias psgrep='pscm|grep -v grep|grep'
 alias tree='tree -N -C --dirsfirst -I "__pycache__|*.pyc|*.pyo|node_modules|dist|build|target|vendor"'
-alias less='bat -n --tabs=4'
+alias less='bat -n --tabs=4 --theme=OneHalfDark'
 alias vv='vim -M'  # 使用 vim 的只读模式浏览文件
 alias aria='aria2c -c -x 16 --file-allocation=none'
 alias axel='axel -n 30'
@@ -57,6 +57,7 @@ alias pygrep='grep --include="*.py"'
 alias pip='uv pip'
 alias venv='uv venv'
 alias upy='uv python'
+alias ut='uv tool'
 
 # Git alias
 alias gad='git add'
@@ -125,8 +126,8 @@ fi
 # Nvm
 if [ -d $HOME/.nvm ]; then
     export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
-    [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
+    # [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+    # [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
 fi
 
 # Bun

@@ -12,6 +12,7 @@
     ls = log --pretty=format:'%C(blue)%ad  %C(auto)%h  %s %d' --date=format:'%Y-%m-%d %H:%M'
     st = status
     sw = switch
+    wt = worktree
 [color]
     ui = true
 [diff]
